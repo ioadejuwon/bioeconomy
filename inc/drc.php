@@ -19,8 +19,8 @@ if ($_SERVER['HTTP_HOST'] == 'localhost:8888') {
     define('ADMIN_URL', 'http://oreoluwas-macbook-pro.local:8888/bioeconomy/admin/');
 } else {
     // Hosting environment
-    define('BASE_URL', 'https://bioeconomyconf.com');
-    define('ADMIN_URL', 'https://admin.bioeconomyconf.com');
+    define('BASE_URL', 'https://bioeconomyconf.com/');
+    define('ADMIN_URL', 'https://admin.bioeconomyconf.com/');
 }
 
 // Pages
