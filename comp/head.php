@@ -9,7 +9,7 @@ include_once("inc/drc.php");
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/images/oau.jpeg">
-    <title>- Bioeconomy Conference</title>
+    <title><?php echo $pagetitle ?>- Bioeconomy Conference</title>
 
     <meta name="author" content="MartVille Technologies">
     <meta name="description"
