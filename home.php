@@ -337,7 +337,7 @@ include_once 'comp/header.php';
                     </div>
                     <ul class="nk-btn-group justify-content-center pt-5 pt-lg-7">
                         <li>
-                            <a href="#" class="btn btn-primary">Register</a>
+                            <a href="<?php echo REGISTER ?>" class="btn btn-primary">Register</a>
                         </li>
                     </ul>
                 </div>
