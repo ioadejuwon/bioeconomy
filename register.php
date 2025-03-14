@@ -1,4 +1,5 @@
 <?php
+$pagetitle = 'Register';
 include_once 'comp/head.php';
 include_once 'comp/header.php';
 ?>
