@@ -242,6 +242,9 @@ include_once 'comp/header.php';
                     <p class="nk-section-text">
                         Accepted abstracts means the presenting author at least MUST REGISTER for the conference for the abstract to be listed in the Book of Abstracts.
                     </p>
+                    <p class="nk-section-text">
+                        Abstract Submission ends on 15th May, 2025.
+                    </p>
                 </div>
             </div>
         </div>
@@ -288,7 +291,7 @@ include_once 'comp/header.php';
             <div class="col-lg-8 col-xxl-6 ">
                 <ul class="nk-btn-group justify-content-center pt-5 pt-lg-7">
                     <li>
-                        <a href="contact-us.html" class="btn btn-primary">Submit Abstract</a>
+                        <a href="<?php echo ABSTRACT_PAGE ?>" class="btn btn-primary">Submit Abstract</a>
                     </li>
 
                 </ul>

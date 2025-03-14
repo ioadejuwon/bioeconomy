@@ -108,3 +108,11 @@
 [14-Mar-2025 17:29:58 UTC] PHP Notice:  Undefined variable: _SESSION in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
 [14-Mar-2025 17:29:58 UTC] PHP Notice:  Trying to access array offset on value of type null in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
 [14-Mar-2025 17:29:58 UTC] PHP Notice:  Undefined variable: pagetitle in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 66
+[14-Mar-2025 17:57:53 UTC] PHP Notice:  Undefined variable: _SESSION in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
+[14-Mar-2025 17:57:53 UTC] PHP Notice:  Trying to access array offset on value of type null in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
+[14-Mar-2025 17:57:58 UTC] PHP Notice:  Undefined variable: _SESSION in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
+[14-Mar-2025 17:57:58 UTC] PHP Notice:  Trying to access array offset on value of type null in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
+[14-Mar-2025 17:58:01 UTC] PHP Notice:  Undefined variable: _SESSION in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
+[14-Mar-2025 17:58:01 UTC] PHP Notice:  Trying to access array offset on value of type null in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
+[14-Mar-2025 17:58:30 UTC] PHP Notice:  Undefined variable: _SESSION in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
+[14-Mar-2025 17:58:30 UTC] PHP Notice:  Trying to access array offset on value of type null in /Users/Isaac/Sites/localhost/bioeconomy/inc/drc.php on line 2
