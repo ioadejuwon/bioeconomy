@@ -1,3 +1,13 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
+<style>
+    .dropzone {
+        border: 1px dashed #21565e;
+        border-radius: 8px;
+        /* padding: 20px; */
+        text-align: center;
+    }
+</style>
 <?php
 $pagetitle = 'Abstract';
 include_once 'comp/head.php';
@@ -113,7 +123,7 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
                                         <div class="form-control-wrap">
-                                            <input type="email" name="user-email" class="form-control" placeholder="Enter your email" required>
+                                            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +131,7 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label">Phone</label>
                                         <div class="form-control-wrap">
-                                            <input type="text" name="user-phone" class="form-control" placeholder="(223) 456 - 789" required>
+                                            <input type="text" name="phone" class="form-control" placeholder="(223) 456 - 789" required>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +153,7 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label" for="options">Presentation Preference:</label>
                                         <div class="form-control-wrap">
-                                            <select id="options" name="options" class="form-control" required>
+                                            <select id="options" name="preference" class="form-control" required>
                                                 <option value="">Please select one</option>
                                                 <option value="Faculty Member">Oral</option>
                                                 <option value="Non-Faculty Member">Poster</option>
@@ -152,18 +162,17 @@ include_once 'comp/header.php';
 
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Abstract</label>
-                                        <div class="form-control-wrap">
-                                            <input type="file" name="user-email" class="form-control" required>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6">
+                                    <p>You will upload the Abstract on the next page</p>
                                 </div>
 
+
                                 <div class="col-12">
-                                    <div class="form-group">
-                                        <button class="btn btn-primary" type="submit" id="submit-btn">Submit Abstract</button>
+                                    <div class="row justify-content-end">
+                                        <div class="col-auto">
+                                            <p>Step 1 of 2</p>
+                                            <button class="btn btn-primary" type="submit" id="submit-btn">Next</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

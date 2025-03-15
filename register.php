@@ -185,10 +185,13 @@ include_once 'comp/header.php';
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group">
-                                        <button class="btn btn-primary" type="submit" id="submit-btn">Register</button>
+                                    <div class="row justify-content-end">
+                                        <div class="col-auto">
+                                            <button class="btn btn-primary" type="submit" id="submit-btn">Register</button>
+                                        </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </form>
                     </div>
