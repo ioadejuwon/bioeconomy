@@ -20,7 +20,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost:8888') {
 } else {
     // Hosting environment
     define('BASE_URL', 'https://bioeconomyconf.com/');
-    define('ADMIN_URL', 'https://bioeconomyconf.com/admin');
+    define('ADMIN_URL', 'https://bioeconomyconf.com/admin/');
 }
 
 // Pages
