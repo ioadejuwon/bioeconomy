@@ -43,7 +43,8 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['login'] ) ) {
 				$mail_sent = mail( $to, $subject, $message, $headers ); //Mail sent to vendor
 				if ( $mail_sent ) {
 					$response['status'] = 'success';
-					$response['redirect_url'] = ! empty( $_POST['url'] ) ? $_POST['url'] : ADMIN_DASHBOARD; // Add redirect URL to response
+					$response['message'] = 'Admin ID is ' . $admin_id;
+					// $response['redirect_url'] = ! empty( $_POST['url'] ) ? $_POST['url'] : ADMIN_DASHBOARD; // Add redirect URL to response
 				}
 			} else {
 				$response['status'] = 'error';

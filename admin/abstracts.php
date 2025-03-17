@@ -2,7 +2,7 @@
 session_start();
 
 include_once "../inc/config.php";
-$pagetitle = "Category";
+$pagetitle = "Abstracts";
 include_once "../inc/drc.php";
 
 $uriSegments = explode( "/", parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) );

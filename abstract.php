@@ -1,13 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
-<style>
-    .dropzone {
-        border: 1px dashed #21565e;
-        border-radius: 8px;
-        /* padding: 20px; */
-        text-align: center;
-    }
-</style>
 <?php
 $pagetitle = 'Abstract';
 include_once 'comp/head.php';
@@ -135,20 +125,7 @@ include_once 'comp/header.php';
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="options">Select Registration Fee:</label>
-                                        <div class="form-control-wrap">
-                                            <select id="options" name="options" class="form-control" required>
-                                                <option value="">Please select one</option>
-                                                <option value="Faculty Member">Faculty Members ₦20,000.00</option>
-                                                <option value="Non-Faculty Member">Non-Faculty Members: ₦25,000.00</option>
-                                                <option value="Student">Student ₦5,000.00 (with evidence of being a student)</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-label" for="options">Presentation Preference:</label>
@@ -162,7 +139,7 @@ include_once 'comp/header.php';
 
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <p>You will upload the Abstract on the next page</p>
                                 </div>
 
