@@ -1,46 +1,47 @@
-RewriteEngine On
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
 
-# Remove .php from URLs
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+RewriteEngine On
+RewriteRule ^app-assets/(.*)$ /app-assets/$1 [L]
+
+
+php_flag log_errors on
+php_value error_reporting 32767
+php_value error_log "error_log.txt"
+
+
+
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^\.]+)$ $1.html [L]
+RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^\.]+)$ $1.php [L]
 
 
-# RewriteEngine On
-# RewriteBase /
 
-# # RewriteRule ^web/(.*)$ https://web.martville.app/$1 [R=301,L]
-
-# # Remove .php extension
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteCond %{REQUEST_FILENAME}.php -f
-# RewriteRule ^([^/]+)/?$ $1.php [L]
-
-
-# # Remove .html extension
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteCond %{REQUEST_FILENAME}.html -f
-# RewriteRule ^([^/]+)/?$ $1.html [L]
 
 # RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteRule ^(.*)$ index.php/$1 [L]
-
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteRule ^(.*)$ inventory/index.php/$1 [L]
-
-# php_flag log_errors on
-# php_value error_reporting 32767
-# php_value error_log "error_log.txt"
+RewriteRule ^([^\.]+)$ index.php?url=$1 [QSA,L]
 
 
-# # DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:PMgmXmkje7
-# ErrorDocument 500 /500.html
-# # DO NOT REMOVE THIS LINE AND THE LINES ABOVE PMgmXmkje7:ERRORPAGEID
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:PMgmXmkje7
+
+ErrorDocument 400 /web/errors/400.html
+ErrorDocument 401 /web/errors/401.html
+ErrorDocument 403 /web/errors/403.html
+ErrorDocument 404 /web/errors/404.html
+ErrorDocument 500 /web/errors/500.html
 
 
-# # DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:52L9Gv8VKD
-# ErrorDocument 404 /404.html
-# # DO NOT REMOVE THIS LINE AND THE LINES ABOVE 52L9Gv8VKD:ERRORPAGEID
+# DO NOT REMOVE THIS LINE AND THE LINES ABOVE PMgmXmkje7:ERRORPAGEID
+
+
+php_value upload_max_filesize 10M
+php_value post_max_size 20M
+
+
+
+
 
