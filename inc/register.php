@@ -38,16 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['message'] = 'Payment proof upload failed. Check file type and size.';
         } else {
             // Check if email already exists
-            $sql = "SELECT email FROM bio_participants WHERE email = ?";
-            $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "s", $email);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
+            // $sql = "SELECT email FROM bio_participants WHERE email = ?";
+            // $stmt = mysqli_prepare($conn, $sql);
+            // mysqli_stmt_bind_param($stmt, "s", $email);
+            // mysqli_stmt_execute($stmt);
+            // mysqli_stmt_store_result($stmt);
 
-            if (mysqli_stmt_num_rows($stmt) > 0) {
-                $response['status'] = 'info';
-                $response['message'] = 'Looks like you registered for the event already.';
-            } else {
+            // if (mysqli_stmt_num_rows($stmt) > 0) {
+            //     $response['status'] = 'info';
+            //     $response['message'] = 'Looks like you registered for the event already.';
+            // } else {
                 mysqli_stmt_close($stmt);
                 
                 // Insert user into database
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $response['message'] = 'There was an error registering the user.';
                 }
-            }
+            // }
         }
     }
 }
