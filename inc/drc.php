@@ -30,21 +30,20 @@ define('ABSTRACT_PAGE', BASE_URL.'abstract');
 
 
 
+define('ABSTRACTS_URL', BASE_URL.'');
+
 
 
 define('ADMIN_LOGIN', ADMIN_URL.'login');
 define('SIGNUP', ADMIN_URL.'signup');
-define('DASHBOARD', ADMIN_URL);
-define('ADD_PRODUCT', ADMIN_URL.'create');
-define('CATEGORIES', ADMIN_URL.'categories');
-define('PRODUCTS', ADMIN_URL.'products');
-define('REVIEWS', ADMIN_URL.'reviews');
-define('ORDERS', ADMIN_URL.'orders');
-define('COUPON', ADMIN_URL.'coupon');
-define('PROFILE', ADMIN_URL.'profile');
-define('SETTINGS', ADMIN_URL.'settings');
-define('ADD_IMAGE', ADMIN_URL.'image');
-define('EDIT_PRODUCT', ADMIN_URL.'edit');
+define('ADMIN_DASHBOARD', ADMIN_URL);
+define('ADMIN_PARTICIPANTS', ADMIN_URL.'participants');
+define('ADMIN_ABSTRACTS', ADMIN_URL.'abstracts');
+
+
+
+
+
 define('DELETE_PRODUCT', ADMIN_URL.'../api/delete');
 define('EDIT_THUMBNAIL', ADMIN_URL.'editthumbnail');
 define('EDIT_IMAGES', ADMIN_URL.'editimages');

@@ -1,3 +1,4 @@
+<script src="assets/js/jquery.min.js"></script>
 <?php
 include_once("inc/config.php");
 include_once("inc/drc.php");
@@ -8,12 +9,11 @@ include_once("inc/drc.php");
     <meta charset="UTF-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/images/oau.jpeg">
+    <link rel="shortcut icon" href="assets/images/oau.png">
     <title><?php echo $pagetitle ?> - Bioeconomy Conference</title>
 
     <meta name="author" content="MartVille Technologies">
-    <meta name="description"
-        content="An International Conference on the latest advancements and innovations in Food Technology, bringing together experts and enthusiasts from around the world." />
+    <meta name="description" content="An International Conference on the latest advancements and innovations in Food Technology, bringing together experts and enthusiasts from around the world." />
 
     <meta property="og:title" content="Bioeconomy Conference" />
     <meta property="og:url" content="https://bioeconomyconf.com" />
@@ -24,8 +24,7 @@ include_once("inc/drc.php");
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Bioeconomy Conference" />
     <meta name="twitter:url" content="https://bioeconomyconf.com" />
-    <meta name="twitter:description"
-        content="An International Conference on the latest advancements and innovations in Food Technology, bringing together experts and enthusiasts from around the world." />
+    <meta name="twitter:description" content="An International Conference on the latest advancements and innovations in Food Technology, bringing together experts and enthusiasts from around the world." />
 
     <meta property="og:image" content="assets/images/oau.jpeg" />
     <meta name="twitter:image" content="assets/images/oau.jpeg" />
@@ -61,6 +60,7 @@ include_once("inc/drc.php");
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    
 </head>
 
 <body class="nk-body" data-navbar-collapse="xl">

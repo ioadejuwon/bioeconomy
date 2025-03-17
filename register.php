@@ -9,7 +9,7 @@ include_once 'comp/header.php';
     <div class="nk-banner-wrap">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="nk-section-head text-center">
                         <h1 class="display-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="0" style="font-size: 50px !important;">
                             2025 Conference Registration
@@ -48,7 +48,7 @@ include_once 'comp/header.php';
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-xxl-10">
+            <div class="col-lg-10 col-xxl-10">
                 <div class="row gy-5">
                     <div class="col-lg-6 col-md-6 " data-aos="fade-up" data-aos-delay="150">
                         <div class="card border-2 rounded-3">
@@ -93,7 +93,7 @@ include_once 'comp/header.php';
             <div class="col-lg-10" data-aos="fade-up">
                 <div class="card rounded-3">
                     <div class="card-body">
-                        <form data-action="form/message-form.php" method="post" class="form-submit-init">
+                        <form id="registerForm" method="POST"  enctype="multipart/form-data">
                             <div class="row g-gs">
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -115,7 +115,7 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
                                         <div class="form-control-wrap">
-                                            <input type="email" name="user-email" class="form-control" placeholder="Enter your email" required>
+                                            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label">Phone</label>
                                         <div class="form-control-wrap">
-                                            <input type="text" name="user-phone" class="form-control" placeholder="(223) 456 - 789" required>
+                                            <input type="text" name="phone" class="form-control" placeholder="(223) 456 - 789" required>
                                         </div>
                                     </div>
                                 </div>
@@ -131,24 +131,32 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label" for="options">Select Registration Fee:</label>
                                         <div class="form-control-wrap">
-                                            <select id="options" name="options" class="form-control" required>
+                                            <select id="options" name="fee" class="form-control" required>
                                                 <option value="">Please select one</option>
-                                                <option value="Faculty Member">Faculty Members ₦20,000.00</option>
-                                                <option value="Non-Faculty Member">Non-Faculty Members: ₦25,000.00</option>
-                                                <option value="Student">Student ₦5,000.00 (with evidence of being a student)</option>
+                                                <option value="20000">Faculty Members ₦20,000.00</option>
+                                                <option value="25000">Non-Faculty Members: ₦25,000.00</option>
+                                                <option value="5000">Student ₦5,000.00 (with evidence of being a student)</option>
                                             </select>
                                         </div>
 
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Evidence of Payment </label>
+                                        <div class="form-control-wrap">
+                                            <input type="file" name="proof" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="options">Are you a student:</label>
+                                        <label class="form-label" for="options">Are you a student?</label>
                                         <div class="form-control-wrap">
-                                            <select id="options" name="options" class="form-control" required>
+                                            <select id="options" name="student" class="form-control" required>
                                                 <option value="">Please select one</option>
-                                                <option value="Faculty Member">Yes</option>
-                                                <option value="Non-Faculty Member">No</option>
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
                                             </select>
                                         </div>
 
@@ -158,36 +166,29 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label">If you are a student, please provide evidence</label>
                                         <div class="form-control-wrap">
-                                            <input type="file" name="user-email" class="form-control" required>
+                                            <input type="file" name="studentproof" class="form-control" >
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Evidence of Payment </label>
-                                        <div class="form-control-wrap">
-                                            <input type="file" name="user-email" class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
+                              
                                 <div class="col-12">
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <label class="form-label">Address Instituition or Affiliation</label>
                                             <span>
-                                                <span id="char-count">0</span>/ <span id="char-max" data-char-max="85">255</span>
+                                                <span id="char-count">0</span>/<span id="char-max" data-char-max="255">255</span>
                                             </span>
                                         </div>
                                         <div class="form-control-wrap">
-                                            <textarea id="textarea-box" name="user-message" class="form-control" placeholder="Enter your message" required>
-                                                </textarea>
+                                            <textarea id="textarea-bx" name="address" class="form-control" placeholder="Enter your message" required></textarea>
+                                            <!-- <textarea id="textarea-box" name="message" class="form-control" placeholder="Enter your message" required></textarea> -->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="row justify-content-end">
                                         <div class="col-auto">
-                                            <button class="btn btn-primary" type="submit" id="submit-btn">Register</button>
+                                            <button class="btn btn-primary" type="submit" name="register" >Register</button>
                                         </div>
                                     </div>
                                 </div>
