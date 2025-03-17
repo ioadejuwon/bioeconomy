@@ -18,16 +18,16 @@ if ( ! isset( $_SESSION['admin_id'] ) ) {
 		exit();
 	}
 }
-$sql = mysqli_query( $conn, "SELECT * FROM bio_admin WHERE admin_id = '{$_SESSION['admin_id']}'" );
+$sql = mysqli_query( $conn, "SELECT * FROM bio_admin WHERE admin_id = '{$admin_id}'" );
 $row = mysqli_fetch_assoc( $sql );
 $name = $row["first_name"] . " 👋";
 $participants = mysqli_query( $conn, "SELECT * FROM bio_participants" );
 $totalparticipants = mysqli_num_rows( $participants );
 $totalparticipants = ! empty( $totalparticipants ) ? $totalparticipants : "0";
 
-$abstracts = mysqli_query( $conn, "SELECT * FROM bio_abstracts" );
-$totalabstracts = mysqli_num_rows( $abstracts );
-$totalabstracts = ! empty( $totalabstracts ) ? $totalabstracts : "0";
+// $abstracts = mysqli_query( $conn, "SELECT * FROM bio_abstracts" );
+// $totalabstracts = mysqli_num_rows( $abstracts );
+// $totalabstracts = ! empty( $totalabstracts ) ? $totalabstracts : "0";
 // $nostorereg = mysqli_query( $conn, "SELECT * FROM users LEFT JOIN merchants ON users.unique_id = merchants.unique_id WHERE merchants.unique_id IS NULL" );
 // $totalnostorereg = mysqli_num_rows( $nostorereg );
 // $links = mysqli_query( $conn, "SELECT * FROM grootlink" );
@@ -44,7 +44,7 @@ include_once "admin-sidebar.php";
 <div class="dashboard__content bg-light-4">
 	<div class="row justify-between pb-0 mb-20">
 		<div class="col-auto">
-			<h1 class="text-27 lh-12 fw-700">Admin Dashboard</h1>
+			<h1 class="text-27 lh-12 fw-700"><?php echo $name ?>Admin Dashboard</h1>
 			<div class="breadcrumbs mt-10 pt-0 pb-0">
 				<div class="breadcrumbs__content">
 					<div class="breadcrumbs__item">
