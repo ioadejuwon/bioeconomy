@@ -56,7 +56,7 @@
 	<link rel="stylesheet" href="assets/unpkg.com/leaflet%401.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 	<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-	<script src="../assets/js/jquery.min.js"></script>
+	<script src="<?php echo BASE_URL ?>assets/js/jquery.min.js"></script>
 
 
 	<!-- Stylesheets -->
