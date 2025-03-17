@@ -133,9 +133,9 @@ include_once 'comp/header.php';
                                         <div class="form-control-wrap">
                                             <select id="options" name="fee" class="form-control" required>
                                                 <option value="">Please select one</option>
-                                                <option value="20000">Faculty Members ₦20,000.00</option>
-                                                <option value="25000">Non-Faculty Members: ₦25,000.00</option>
-                                                <option value="5000">Student ₦5,000.00 (with evidence of being a student)</option>
+                                                <option value="1">Faculty Members ₦20,000.00</option>
+                                                <option value="2">Non-Faculty Members: ₦25,000.00</option>
+                                                <option value="0">Student ₦5,000.00 (with evidence of being a student)</option>
                                             </select>
                                         </div>
 

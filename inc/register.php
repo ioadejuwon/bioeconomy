@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //     $response['status'] = 'info';
             //     $response['message'] = 'Looks like you registered for the event already.';
             // } else {
-                mysqli_stmt_close($stmt);
+                // mysqli_stmt_close($stmt);
                 
                 // Insert user into database
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
@@ -113,5 +113,5 @@ function sendConfirmationEmail($email, $fname) {
                'MIME-Version: 1.0' . "\r\n" .
                'Content-Type: text/html; charset=ISO-8859-1';
 
-    return mail($email, "Registration Successful 📮", $message, $headers);
+    return mail($email, "Registration Successful 2 📮", $message, $headers);
 }

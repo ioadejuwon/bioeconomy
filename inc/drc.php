@@ -39,7 +39,7 @@ define('SIGNUP', ADMIN_URL.'signup');
 define('ADMIN_DASHBOARD', ADMIN_URL);
 define('ADMIN_PARTICIPANTS', ADMIN_URL.'participants');
 define('ADMIN_ABSTRACTS', ADMIN_URL.'abstracts');
-
+define('PARTCIPIPANT_DETS', ADMIN_URL.'participant?id=');
 
 
 

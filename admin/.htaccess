@@ -1,0 +1,46 @@
+RewriteEngine On
+
+# Remove .php from URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [L]
+
+
+# RewriteEngine On
+# RewriteBase /
+
+# # RewriteRule ^web/(.*)$ https://web.martville.app/$1 [R=301,L]
+
+# # Remove .php extension
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}.php -f
+# RewriteRule ^([^/]+)/?$ $1.php [L]
+
+
+# # Remove .html extension
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}.html -f
+# RewriteRule ^([^/]+)/?$ $1.html [L]
+
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ index.php/$1 [L]
+
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ inventory/index.php/$1 [L]
+
+# php_flag log_errors on
+# php_value error_reporting 32767
+# php_value error_log "error_log.txt"
+
+
+# # DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:PMgmXmkje7
+# ErrorDocument 500 /500.html
+# # DO NOT REMOVE THIS LINE AND THE LINES ABOVE PMgmXmkje7:ERRORPAGEID
+
+
+# # DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:52L9Gv8VKD
+# ErrorDocument 404 /404.html
+# # DO NOT REMOVE THIS LINE AND THE LINES ABOVE 52L9Gv8VKD:ERRORPAGEID
+
