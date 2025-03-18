@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
                     $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
-                    $response['message'] = 'Success was an error registering the user.';
                     $response['message'] = sendConfirmationEmail($email, $fname) ?
                         'Registration successful. Confirmation email sent.' :
                         'Registration successful, but email could not be sent.';
+                    $response['redirect_url'] = 'Success was an error registering the user.';
                 } else {
                     $response['message'] = 'There was an error registering the user.';
                 }
@@ -70,7 +70,8 @@ header('Content-Type: application/json');
 echo json_encode($response);
 exit;
 
-function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address){
+function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)
+{
     $sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, proof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ssssssssss", $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address);
@@ -99,7 +100,8 @@ function uploadFile($file, $type, $file_id)
     return move_uploaded_file($file["tmp_name"], $filePath) ? $filePath : null;
 }
 
-function sendConfirmationEmail($email, $fname){
+function sendConfirmationEmail($email, $fname)
+{
     $templateFilePath = '../email/confirmation.html';
     if (!file_exists($templateFilePath)) {
         return false;

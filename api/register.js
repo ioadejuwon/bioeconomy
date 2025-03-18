@@ -38,8 +38,8 @@ $j(document).ready(function() {
                 success: function(response) {
                     if (response.status === "success") {
                         // showNotification(response.redirect_url, "success");
-                        window.location.href = response.redirect_url;
                         showNotification(response.message, "success");
+                        window.location.href = response.redirect_url;
                     } else if (response.status === "info") {
                         showNotification(response.message, "info");
                     } else {
