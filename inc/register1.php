@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	if (!empty($_FILES['proof']['name'])) {
-		$proof = uploadFile($_FILES['proof'],$type = 'Proof_', $file_id);
+		$proof = uploadFile($_FILES['proof'],$type = 'proof_', $file_id);
 		
 		if (!$proof) {
 			$response['message'] = 'Payment proof upload failed. Check file type and size.';
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	// Check if email already exists
-	$sql = "SELECT email FROM bio_users WHERE email = ?";
+	$sql = "SELECT email FROM bio_participants WHERE email = ?";
 	$stmt = mysqli_prepare($conn, $sql);
 	mysqli_stmt_bind_param($stmt, "s", $email);
 	mysqli_stmt_execute($stmt);
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		// Send confirmation email
 		$to = $email;
 		$subject = "Registration Successful 📮";
-		$templateFilePath = '../email/verify.html';
+		$templateFilePath = '../email/confirmation.html';
 
 		if (file_exists($templateFilePath)) {
 			$message = file_get_contents($templateFilePath);
@@ -135,7 +135,7 @@ exit;
 
 /*** Inserts a new user into the database. */
 function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address){
-	$sql = "INSERT INTO bio_users (user_id, first_name, last_name, email, phone, fee, student, studentproof, proof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, proof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	$stmt = mysqli_prepare($conn, $sql);
 	mysqli_stmt_bind_param($stmt, "ssssssssss", $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address);
 	return mysqli_stmt_execute($stmt);
