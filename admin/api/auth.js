@@ -14,7 +14,7 @@ $(document).ready(function() {
                 if(response.status === 'success'){
                     // console.log(response);
                     showNotification(response.redirect_url, 'success'); // Show notification
-                    // showNotification(response.message, 'success'); // Show notification
+                    showNotification(response.message, 'success'); // Show notification
                     window.location.href = response.redirect_url; // Redirect on success
                 } else if (response.status == 'info'){
                     showNotification(response.message, 'info'); // Yellow notification
