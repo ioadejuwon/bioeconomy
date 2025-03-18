@@ -18,8 +18,8 @@
 						</button>
 					</div>
 					<div class="header__logo ml-30 md:ml-20">
-						<a data-barba href="<?php echo BASE_URL ?>">
-							<img class="no-big-scren rounded-8" src="../assets/images/oau.png" alt="logo1" width="50px">
+						<a data-barba href="<?php echo ADMIN_URL ?>">
+							<img class="no-big-scren rounded-8" src="<?php echo BASE_URL ?>assets/images/oau.png" alt="logo1" width="50px">
 						</a>
 					</div>
 				</div>
