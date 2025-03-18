@@ -28,11 +28,7 @@ define('HOME', BASE_URL.'home');
 define('REGISTER', BASE_URL.'register');
 define('ABSTRACT_PAGE', BASE_URL.'abstract');
 
-
-
 define('ABSTRACTS_URL', BASE_URL.'');
-
-
 
 define('ADMIN_LOGIN', ADMIN_URL.'login');
 define('SIGNUP', ADMIN_URL.'signup');
@@ -41,21 +37,9 @@ define('ADMIN_PARTICIPANTS', ADMIN_URL.'participants');
 define('ADMIN_ABSTRACTS', ADMIN_URL.'abstracts');
 define('PARTCIPIPANT_DETS', ADMIN_URL.'participant?id=');
 
-
-
-
-define('DELETE_PRODUCT', ADMIN_URL.'../api/delete');
-define('EDIT_THUMBNAIL', ADMIN_URL.'editthumbnail');
-define('EDIT_IMAGES', ADMIN_URL.'editimages');
-define('ORDER_DETAILS', ADMIN_URL.'order?o=');
-
-
 define('ADMIN_LOGOUT', ADMIN_URL.'logout'); // Logout Link
 
 // define('LOGOUT', BASE_URL.'logout?id='.$user_id); // Logout Link
-
-
-
 
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://'; // Get the protocol (http or https)
 $host = $_SERVER['HTTP_HOST']; // Get the host (domain name)
@@ -63,4 +47,3 @@ $uri = $_SERVER['REQUEST_URI']; // Get the current request URI
 $current_url = $protocol . $host . $uri; // Combine the protocol, host, and URI to get the full URL
 // echo "Current URL: $current_url"; // Output the current URL
 $t = $pagetitle;
-
