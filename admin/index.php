@@ -44,7 +44,7 @@ include_once "admin-sidebar.php";
 <div class="dashboard__content bg-light-4">
 	<div class="row justify-between pb-0 mb-20">
 		<div class="col-auto">
-			<h1 class="text-27 lh-12 fw-700"><?php echo $name ?>Admin Dashboard</h1>
+			<h1 class="text-27 lh-12 fw-700">Admin Dashboard</h1>
 			<div class="breadcrumbs mt-10 pt-0 pb-0">
 				<div class="breadcrumbs__content">
 					<div class="breadcrumbs__item">
