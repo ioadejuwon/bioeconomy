@@ -38,29 +38,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['message'] = 'Payment proof upload failed. Check file type and size.';
         } else {
             // Check if email already exists
-            // $sql = "SELECT email FROM bio_participants WHERE email = ?";
-            // $stmt = mysqli_prepare($conn, $sql);
-            // mysqli_stmt_bind_param($stmt, "s", $email);
-            // mysqli_stmt_execute($stmt);
-            // mysqli_stmt_store_result($stmt);
+            $sql = "SELECT email FROM bio_participants WHERE email = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
 
-            // if (mysqli_stmt_num_rows($stmt) > 0) {
-            //     $response['status'] = 'info';
-            //     $response['message'] = 'Looks like you registered for the event already.';
-            // } else {
-                // mysqli_stmt_close($stmt);
-                
-                // Insert user into database
-                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
-                    $_SESSION['user_id'] = $user_id;
-                    $response['status'] = 'success';
-                    $response['message'] = sendConfirmationEmail($email, $fname) ? 
-                        'Registration successful. Confirmation email sent.' : 
-                        'Registration successful, but email could not be sent.';
-                } else {
-                    $response['message'] = 'There was an error registering the user.';
-                }
-            // }
+            if (mysqli_stmt_num_rows($stmt) > 0) {
+                $response['status'] = 'info';
+                $response['message'] = 'Looks like you registered for the event already.';
+            } else {
+            mysqli_stmt_close($stmt);
+
+            // Insert user into database
+            if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
+                $_SESSION['user_id'] = $user_id;
+                $response['status'] = 'success';
+                $response['message'] = sendConfirmationEmail($email, $fname) ?
+                    'Registration successful. Confirmation email sent.' :
+                    'Registration successful, but email could not be sent.';
+            } else {
+                $response['message'] = 'There was an error registering the user.';
+            }
+            }
         }
     }
 }
@@ -69,14 +69,16 @@ header('Content-Type: application/json');
 echo json_encode($response);
 exit;
 
-function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address) {
+function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)
+{
     $sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, proof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ssssssssss", $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address);
     return mysqli_stmt_execute($stmt);
 }
 
-function uploadFile($file, $type, $file_id) {
+function uploadFile($file, $type, $file_id)
+{
     $uploadDir = "uploads/";
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
@@ -97,7 +99,8 @@ function uploadFile($file, $type, $file_id) {
     return move_uploaded_file($file["tmp_name"], $filePath) ? $filePath : null;
 }
 
-function sendConfirmationEmail($email, $fname) {
+function sendConfirmationEmail($email, $fname)
+{
     $templateFilePath = '../email/confirmation.html';
     if (!file_exists($templateFilePath)) {
         return false;
@@ -108,10 +111,9 @@ function sendConfirmationEmail($email, $fname) {
     $message = str_replace('{{YEAR}}', FOOTERYEAR, $message);
 
     $headers = 'From: Bioeconomy Conference <noreply@bioeconomyconf.com>' . "\r\n" .
-               'Reply-To: hello@bioeconomyconf.com' . "\r\n" .
-               'X-Mailer: PHP/' . phpversion() . "\r\n" .
-               'MIME-Version: 1.0' . "\r\n" .
-               'Content-Type: text/html; charset=ISO-8859-1';
-
+        'Reply-To: hello@bioeconomyconf.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion() . "\r\n" .
+        'MIME-Version: 1.0' . "\r\n" .
+        'Content-Type: text/html; charset=ISO-8859-1';
     return mail($email, "Registration Successful 2 📮", $message, $headers);
 }
