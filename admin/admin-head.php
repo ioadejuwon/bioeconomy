@@ -39,7 +39,7 @@
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" href="../assets/images/oau.png">
+	<link rel="icon" type="image/png" href="<?php echo BASE_URL ?>assets/images/oau.png">
 	<!-- <link rel="shortcut icon" href="assets/images/oau.png"> -->
 	<!-- <link rel="manifest" href="favicon/site.html"> -->
 	<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#0010f7">
