@@ -35782,7 +35782,7 @@ button.swiper-pagination-bullet {
     }
 }
 
-.shape-44::before,.shape-43::before,.shape-43::after,.shape-43-a::before,.shape-43-a::after,.shape-42::before,.shape-42::after,.shape-41::after,.shape-37::before,.shape-37::after,.shape-36::after,.shape-36::before,.shape-35::before,.shape-35::after,.shape-34::after,.shape-34::before,.shape-33::after,.shape-32::before,.shape-32::after,.shape-31::after,.shape-30::before,.shape-30::after,.shape-30-a::before,.shape-30-a::after,.shape-29::before,.shape-29::after,.shape-28::before,.shape-28::after,.shape-22::before,.shape-22::after,.shape-21::after,.shape-20::after,.shape-19::after,.shape-18::after,.shape-17::after,.shape-16::after,.shape-15::after,.shape-14::after,.shape-13::after,.shape-12::after,.shape-11::after,.shape-10::after,.shape-6::before,.shape-6::after,.shape-5::after,.shape-4::after,.shape-4-a::after,.shape-4-b::after,.shape-3::after,.shape-1::after,.home-live-chat-app .nk-section-support::after,.home-bs-solution .nk-section-content .nk-mask.shape::before,.home-bs-solution .nk-section-content .nk-mask.shape::after,.nk-banner-saas::after,.nk-banner-dg-business .nk-banner-content .nk-mask::before,.nk-banner-dg-business .nk-banner-content .nk-mask::after {
+.shape-44::before,.shape-43::before,.shape-43::after,.shape-43-a::before,.shape-43-a::after,.shape-42::before,.shape-42::after,.shape-41::after,.shape-37::before,.shape-37::after,.shape-36::after,.shape-36::before,.shape-35::before,.shape-35::after,.shape-34::after,.shape-34::before,.shape-33::after,.shape-32::before,.shape-32::after,.shape-31::after,.shape-30::before,.shape-30::after,.shape-30-a::before,.shape-30-a::after,.shape-29::before,.shape-29::after,.shape-28::before,.shape-28::after,.shape-22::before,.shape-22::after,.shape-21::after,.shape-20::after,.shape-19::after,.shape-18::after,.shape-17::after,.shape-16::after,.shape-15::after,.shape-14::after,.shape-13::after,.shape-12::after,.shape-11::after,.shape-10::after,.shape-6::before,.shape-6::after,.shape-5::after,.shape-4::after,.shape-4-a::after,.shape-4-b::after,.shape-3::after,.shape-1::after,.nk-section-support::after,.home-bs-solution .nk-section-content .nk-mask.shape::before,.home-bs-solution .nk-section-content .nk-mask.shape::after,.nk-banner-saas::after,.nk-banner-dg-business .nk-banner-content .nk-mask::before,.nk-banner-dg-business .nk-banner-content .nk-mask::after {
     content: "";
     z-index: -1;
     opacity: .6;
@@ -37648,7 +37648,7 @@ button.swiper-pagination-bullet {
     }
 }
 
-.shape-44::before,.shape-43::before,.shape-43::after,.shape-43-a::before,.shape-43-a::after,.shape-42::before,.shape-42::after,.shape-41::after,.shape-37::before,.shape-37::after,.shape-36::after,.shape-36::before,.shape-35::before,.shape-35::after,.shape-34::after,.shape-34::before,.shape-33::after,.shape-32::before,.shape-32::after,.shape-31::after,.shape-30::before,.shape-30::after,.shape-30-a::before,.shape-30-a::after,.shape-29::before,.shape-29::after,.shape-28::before,.shape-28::after,.shape-22::before,.shape-22::after,.shape-21::after,.shape-20::after,.shape-19::after,.shape-18::after,.shape-17::after,.shape-16::after,.shape-15::after,.shape-14::after,.shape-13::after,.shape-12::after,.shape-11::after,.shape-10::after,.shape-6::before,.shape-6::after,.shape-5::after,.shape-4::after,.shape-4-a::after,.shape-4-b::after,.shape-3::after,.shape-1::after,.home-live-chat-app .nk-section-support::after,.home-bs-solution .nk-section-content .nk-mask.shape::before,.home-bs-solution .nk-section-content .nk-mask.shape::after,.nk-banner-dg-business .nk-banner-content .nk-mask::before,.nk-banner-dg-business .nk-banner-content .nk-mask::after,.nk-banner-saas::after {
+.shape-44::before,.shape-43::before,.shape-43::after,.shape-43-a::before,.shape-43-a::after,.shape-42::before,.shape-42::after,.shape-41::after,.shape-37::before,.shape-37::after,.shape-36::after,.shape-36::before,.shape-35::before,.shape-35::after,.shape-34::after,.shape-34::before,.shape-33::after,.shape-32::before,.shape-32::after,.shape-31::after,.shape-30::before,.shape-30::after,.shape-30-a::before,.shape-30-a::after,.shape-29::before,.shape-29::after,.shape-28::before,.shape-28::after,.shape-22::before,.shape-22::after,.shape-21::after,.shape-20::after,.shape-19::after,.shape-18::after,.shape-17::after,.shape-16::after,.shape-15::after,.shape-14::after,.shape-13::after,.shape-12::after,.shape-11::after,.shape-10::after,.shape-6::before,.shape-6::after,.shape-5::after,.shape-4::after,.shape-4-a::after,.shape-4-b::after,.shape-3::after,.shape-1::after, .nk-section-support::after,.home-bs-solution .nk-section-content .nk-mask.shape::before,.home-bs-solution .nk-section-content .nk-mask.shape::after,.nk-banner-dg-business .nk-banner-content .nk-mask::before,.nk-banner-dg-business .nk-banner-content .nk-mask::after,.nk-banner-saas::after {
     content: "";
     z-index: -1;
     opacity: .6;
@@ -38381,7 +38381,7 @@ button.swiper-pagination-bullet {
     background-color: rgba(0,10,99,.4)
 }
 
-.home-live-chat-app .nk-section-support::after {
+.nk-section-support::after {
     right: 0;
     top: -60px;
     width: 36.9%;
@@ -38390,7 +38390,7 @@ button.swiper-pagination-bullet {
     background-color: #e3f1ef
 }
 
-.home-live-chat-app .nk-section-support .nk-mask.shape::after,.home-live-chat-app .nk-section-support .nk-mask.shape::before {
+.nk-section-support .nk-mask.shape::after,.nk-section-support .nk-mask.shape::before {
     content: "";
     z-index: -1;
     opacity: .6;
@@ -38402,7 +38402,7 @@ button.swiper-pagination-bullet {
 }
 
 @media(min-width: 992px) {
-    .home-live-chat-app .nk-section-support .nk-mask.shape::before {
+    .nk-section-support .nk-mask.shape::before {
         top:0;
         left: 0;
         width: 266px;
@@ -38413,7 +38413,7 @@ button.swiper-pagination-bullet {
 }
 
 @media(min-width: 992px) {
-    .home-live-chat-app .nk-section-support .nk-mask.shape::after {
+    .nk-section-support .nk-mask.shape::after {
         right:0;
         bottom: 0;
         width: 330px;
@@ -38423,7 +38423,7 @@ button.swiper-pagination-bullet {
     }
 }
 
-.home-live-chat-app .nk-section-cta::before {
+.nk-section-cta::before {
     content: "";
     top: 0;
     left: 0;
@@ -39042,35 +39042,35 @@ h6,.h6 {
     }
 }
 
-.home-live-chat-app .display-6 {
+ .display-6 {
     letter-spacing: -0.025em;
     line-height: 1.12
 }
 
-.home-live-chat-app h1,.home-live-chat-app .h1 {
+ h1, .h1 {
     line-height: 1.33;
     letter-spacing: -0.02em
 }
 
-.home-live-chat-app h2,.home-live-chat-app .h2 {
+ h2, .h2 {
     line-height: 1.41;
     letter-spacing: -0.02em
 }
 
-.home-live-chat-app h3,.home-live-chat-app .h3 {
+ h3, .h3 {
     line-height: 1.4
 }
 
-.home-live-chat-app h4,.home-live-chat-app .h4 {
+ h4, .h4 {
     line-height: 1.68
 }
 
-.home-live-chat-app h5,.home-live-chat-app .h5 {
+ h5, .h5 {
     line-height: 1.6;
     letter-spacing: -0.01em
 }
 
-.home-live-chat-app h6,.home-live-chat-app .h6 {
+ h6, .h6 {
     line-height: 1.58;
     letter-spacing: -0.01em
 }
@@ -43044,7 +43044,7 @@ h6,.h6 {
     background-repeat: no-repeat
 }
 
-.shape-44::before,.shape-43::before,.shape-43::after,.shape-43-a::before,.shape-43-a::after,.shape-42::before,.shape-42::after,.shape-41::after,.shape-37::before,.shape-37::after,.shape-36::after,.shape-36::before,.shape-35::before,.shape-35::after,.shape-34::after,.shape-34::before,.shape-33::after,.shape-32::before,.shape-32::after,.shape-31::after,.shape-30::before,.shape-30::after,.shape-30-a::before,.shape-30-a::after,.shape-29::before,.shape-29::after,.shape-28::before,.shape-28::after,.shape-22::before,.shape-22::after,.shape-21::after,.shape-20::after,.shape-19::after,.shape-18::after,.shape-17::after,.shape-16::after,.shape-15::after,.shape-14::after,.shape-13::after,.shape-12::after,.shape-11::after,.shape-10::after,.shape-6::before,.shape-6::after,.shape-5::after,.shape-4::after,.shape-4-a::after,.shape-4-b::after,.shape-3::after,.shape-1::after,.nk-banner-dg-business .nk-banner-content .nk-mask::before,.nk-banner-dg-business .nk-banner-content .nk-mask::after,.nk-banner-saas::after,.home-bs-solution .nk-section-content .nk-mask.shape::before,.home-bs-solution .nk-section-content .nk-mask.shape::after,.home-live-chat-app .nk-section-support::after {
+.shape-44::before,.shape-43::before,.shape-43::after,.shape-43-a::before,.shape-43-a::after,.shape-42::before,.shape-42::after,.shape-41::after,.shape-37::before,.shape-37::after,.shape-36::after,.shape-36::before,.shape-35::before,.shape-35::after,.shape-34::after,.shape-34::before,.shape-33::after,.shape-32::before,.shape-32::after,.shape-31::after,.shape-30::before,.shape-30::after,.shape-30-a::before,.shape-30-a::after,.shape-29::before,.shape-29::after,.shape-28::before,.shape-28::after,.shape-22::before,.shape-22::after,.shape-21::after,.shape-20::after,.shape-19::after,.shape-18::after,.shape-17::after,.shape-16::after,.shape-15::after,.shape-14::after,.shape-13::after,.shape-12::after,.shape-11::after,.shape-10::after,.shape-6::before,.shape-6::after,.shape-5::after,.shape-4::after,.shape-4-a::after,.shape-4-b::after,.shape-3::after,.shape-1::after,.nk-banner-dg-business .nk-banner-content .nk-mask::before,.nk-banner-dg-business .nk-banner-content .nk-mask::after,.nk-banner-saas::after,.home-bs-solution .nk-section-content .nk-mask.shape::before,.home-bs-solution .nk-section-content .nk-mask.shape::after, .nk-section-support::after {
     content: "";
     z-index: -1;
     opacity: .6;

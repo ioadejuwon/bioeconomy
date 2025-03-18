@@ -55,6 +55,6 @@ $j(document).ready(function() {
             });
         });
     } else {
-        console.error("Error: #registerForm not found in DOM!");
+        // console.error("Error: #registerForm not found in DOM!");
     }
 });

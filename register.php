@@ -2,7 +2,16 @@
 $pagetitle = 'Register';
 include_once 'comp/head.php';
 include_once 'comp/header.php';
+
+
+if (isset($_GET['email'])) {
+    $email = htmlspecialchars($_GET['email']); // Sanitize input to prevent XSS
+    
+} 
 ?>
+
+
+
 
 <section class="nk-banner nk-banner-bs-driven is-theme is-theme-bg  pt-7 pt-lg-80 pb-lg-80 " style="background-image: url('assets/images/conf.jpg');">
 
@@ -26,7 +35,7 @@ include_once 'comp/header.php';
         </div>
     </div>
 </section>
-<!-- <section class="nk-section pt-7 pt-lg-120">  </section>-->
+
 <section class="nk-banner nk-banner-live-chat-app bg-primary-100  pt-7 pb-7 pt-lg- pb-lg-160">
     <div class="container">
         <div class="row justify-content-center text-center d-none">
@@ -115,7 +124,7 @@ include_once 'comp/header.php';
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
                                         <div class="form-control-wrap">
-                                            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+                                            <input type="email" name="email" class="form-control" placeholder="Enter your email" value="<?php echo $email ?>" required>
                                         </div>
                                     </div>
                                 </div>

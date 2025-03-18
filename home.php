@@ -3,33 +3,35 @@ $pagetitle = 'Home';
 include_once 'comp/head.php';
 include_once 'comp/header.php';
 ?>
+
 <!-- home -->
 <section class="nk-banner nk-banner-live-chat-app">
     <div class="nk-banner-wrap">
         <div class="container">
             <div class="row align-items-center justify-content-center  pb-xxl-8">
-                <div class="col-md-12 col-lg-10 col-xl-8 text-center justify-content-center">
+                <div class="col-md-12 col-lg-10 col-xl-8 text-center justify-content-center position-relative">
                     <div class="nk-banner-content  text-center text-xl-start pb-5 pb-md-7 pb-xl-0">
                         <ul class="nk-list-link horizontal justify-content-center  mb-3">
                             <li data-aos="fade-up" data-aos-delay="0">
-                                <span class="fs-14 fw-semibold text-uppercase text-primary">Bioeconomy Conference</span>
+                                <span class="badge badge-md text-bg-dark rounded-pill text-uppercase mb-3 aos-init aos-animate" data-aos="fade-up">Bioeconomy Conference</span>
+                                <!-- <span class="fs-14 fw-semibold text-uppercase text-primary">Bioeconomy Conference</span> -->
                             </li>
 
                         </ul>
                         <div class="pb-5 pb-xl-7">
                             <h1 class="text-capitalize display-6 mb-2 text-center" data-aos="fade-up" data-aos-delay="100">
-                                Utilization of Cocoa Beans and By-products for a Circular Economy<span class="ps-1 text-primary">.</span>
+                                Utilization of <span class="title-shape title-shape-2 text-primary">Cocoa</span> Beans and By-products for a Circular Economy<span class="ps-1 text-primary">.</span>
                             </h1>
                             <p class="nk-section-text text-center" data-aos="fade-up" data-aos-delay="150">
                                 An International Conference on the latest advancements and innovations in Food
                                 Technology, bringing together experts and enthusiasts from around the world.
                             </p>
                         </div>
-                        <form data-action="form/subscribe.php" class="form-submit-init" method="post" data-aos="fade-up" data-aos-delay="200">
+                        <form action="register" method="GET" class="form-submit-init" data-aos="fade-up" data-aos-delay="200">
                             <div class="form-group nk-newsletter-one row justify-content-center">
-                                <div class="col-md-5 ">
+                                <div class="col-md-5">
                                     <div class="form-control-wrap mb-4 mb-md-0">
-                                        <input type="email" name="email" class="form-control    border-dark " placeholder="Enter Your Email" required>
+                                        <input type="email" name="email" class="form-control border-dark" placeholder="Enter Your Email" required>
                                     </div>
                                 </div>
                                 <div class="col-md-2 ps-md-0">
@@ -37,6 +39,7 @@ include_once 'comp/header.php';
                                 </div>
                             </div>
                         </form>
+
                         <ul class="d-flex gap-5 flex-wrap align-items-center justify-content-center text-base pt-5">
                             <li data-aos="fade-up" data-aos-delay="150">
                                 <em class="icon ni ni-check-circle me-1">
@@ -57,15 +60,48 @@ include_once 'comp/header.php';
 
                     </div>
                 </div>
-                <div class="col-lg-5 col-xl-6 d-none" data-aos="fade-up">
+                <div class="col-lg-8 col-xl-8 d-none container position-relative  px-lg-3 pt-5" data-aos="fade-up">
                     <div class="nk-banner-img">
-                        <img src="assets/images/chat-app/banner-cover.png" alt="banner-cover">
+                        <img src="assets/images/bioconf-06.png" alt="banner-cover" style="border-radius: 20px !important;">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+<section class="nk-section nk-section-support bg-primary- position-relative overflow-hidden py-7 py-lg-120">
+    <div class="nk-mask shape"></div>
+    <div class="container">
+        <div class="row justify-content-center d-none">
+            <div class="col-lg-8 col-xxl-6">
+                <div class="nk-section-head text-center">
+                    <span class="nk-section-subtitle">support multiplatform</span>
+                    <h2 class="nk-section-title">One platform to <span class="title-shape title-shape-3 title-shape-3_one">connect</span> everywhere.</h2>
+                    <p class="nk-section-text"> One platform, limitless connections. Simplify communication and boost productivity across multiple channels with ease. </p>
+                </div>
+            </div>
+        </div>
+        <div class="nk-platform row justify-content-center">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-10">
+                    <div class="tab-content nk-platform-tab-content aos-init aos-animate" id="pills-tabContent" data-aos="fade-up" data-aos-delay="300">
+                        <div class="tab-pane nk-platform-tab-pane  fade show active d-non" id="platform-tab-1" role="tabpanel" aria-labelledby="pills-platform-tab-1" tabindex="0">
+                            <div class="nk-platform-tiles">
+                                <img src="assets/images/bioconf-06.png" alt="platform-tiles" class="overflow-hidden rounded-3">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 
 <!-- speakers -->
 <section class="nk-section nk-section-support bg-primary-100 position-relative overflow-hidden">
@@ -97,10 +133,12 @@ include_once 'comp/header.php';
                         <div class="team-card-details">
                             <a data-bs-toggle="modal" href="#changePlanModal">
                                 <div class="info">
+                                    <span> <strong>Keynote Speaker</strong> </span>
                                     <h5 class="text-capitalize m-0">
-                                        Prof W.O. Siyanbola
+                                        Dr Patrick Adebola
                                     </h5>
-                                    <span>Keynote</span>
+                                    <span>Executive Director,
+                                        Cocoa Research Institute of Nigeria (CRIN)</span>
                                 </div>
                                 <a class="d-none media media-middle media-circle bg-gray-100">
                                     <em class="icon ni ni-twitter"> </em>
@@ -118,10 +156,11 @@ include_once 'comp/header.php';
                         <div class="team-card-details">
                             <a data-bs-toggle="modal" href="#changePlanModal">
                                 <div class="info">
+                                    <span> <strong>Lead Speaker</strong> </span>
                                     <h5 class="text-capitalize m-0">
-                                        Mrs. Yemisi Iranloye
+                                        Mrs Femi Oyedipe
                                     </h5>
-                                    <span>Plenary Speaker</span>
+                                    <span>Chief Executive Officer Loshes chocolate (Nigeria)</span>
                                 </div>
                                 <a class="d-none media media-middle media-circle bg-gray-100">
                                     <em class="icon ni ni-twitter"> </em>
@@ -139,10 +178,11 @@ include_once 'comp/header.php';
                         <div class="team-card-details">
                             <a data-bs-toggle="modal" href="#changePlanModal">
                                 <div class="info">
+                                    <span> <strong>Lead Speaker</strong> </span>
                                     <h5 class="text-capitalize m-0">
-                                        Mrs. Yemisi Iranloye
+                                        Prof. K. A. Taiwo
                                     </h5>
-                                    <span>Plenary Speaker</span>
+                                    <span>Department of Food Science and Technology, Obafemi Awolowo University, Ile-Ife</span>
                                 </div>
                                 <a class="d-none media media-middle media-circle bg-gray-100">
                                     <em class="icon ni ni-twitter"> </em>
@@ -151,7 +191,27 @@ include_once 'comp/header.php';
                         </div>
                     </div>
                 </div>
-
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="team-card">
+                        <div class="team-card-cover">
+                            <img src="assets/images/team/e.png" alt="team-member" class="img-fluid">
+                        </div>
+                        <div class="team-card-details">
+                            <a data-bs-toggle="modal" href="#changePlanModal">
+                                <div class="info">
+                                    <span> <strong>Lead Speaker</strong> </span>
+                                    <h5 class="text-capitalize m-0">
+                                        Prof. Ogunsina
+                                    </h5>
+                                    <span>Department of Agricultural and Environmental Engineering, Obafemi Awolowo University, Ile-Ife</span>
+                                </div>
+                                <a class="d-none media media-middle media-circle bg-gray-100">
+                                    <em class="icon ni ni-twitter"> </em>
+                                </a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -229,7 +289,6 @@ include_once 'comp/header.php';
 </section>
 
 <!-- abstract -->
-
 <section class="nk-section  nk-video-section bg-primary-100 overflow-hidden">
     <div class="container">
         <div class="row justify-content-center">
@@ -546,7 +605,7 @@ include_once 'comp/header.php';
                             </a>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

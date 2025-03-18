@@ -1,3 +1,15 @@
+<link rel="stylesheet" href="assets/dropzone/dropzone.min.css">
+<script src="assets/dropzone/dropzone.min.js"></script>
+<style>
+    .dropzone {
+        border: 1px dashed #21565e;
+        border-radius: 8px;
+        /* padding: 20px; */
+        text-align: center;
+
+    }
+</style>
+
 <?php
 $pagetitle = 'Abstract';
 include_once 'comp/head.php';
@@ -26,7 +38,7 @@ include_once 'comp/header.php';
 
 
 
-<!-- <section class="nk-section pt-7 pt-lg-120"> -->
+
 <section class="nk-banner nk-banner-live-chat-app bg-primary-100  pt-7 pb-7 pt-lg-120 pb-lg-160">
     <div class="container">
         <div class="row justify-content-center text-center d-none">
@@ -91,7 +103,8 @@ include_once 'comp/header.php';
             <div class="col-lg-10" data-aos="fade-up">
                 <div class="card rounded-3">
                     <div class="card-body">
-                        <form data-action="form/message-form.php" method="post" class="form-submit-init">
+                        <!-- <form data-action="form/message-form.php" method="post" class="form-submit-init"> -->
+                        <form action="inc/api_abstracts.php" method="POST" enctype="multipart/form-data" id="edit-images-dropzone">
                             <div class="row g-gs">
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -125,35 +138,37 @@ include_once 'comp/header.php';
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-label" for="options">Presentation Preference:</label>
                                         <div class="form-control-wrap">
-                                            <select id="options" name="preference" class="form-control" required>
+                                            <select id="options" name="mode" class="form-control" required>
                                                 <option value="">Please select one</option>
-                                                <option value="Faculty Member">Oral</option>
-                                                <option value="Non-Faculty Member">Poster</option>
+                                                <option value="0">Oral</option>
+                                                <option value="1">Poster</option>
                                             </select>
                                         </div>
-
                                     </div>
                                 </div>
+
+                                <!-- File Upload Section -->
                                 <div class="col-lg-12">
+                                    <div id="dropzoneArea" class="dropzone"></div>
                                     <p>You will upload the Abstract on the next page</p>
                                 </div>
-
 
                                 <div class="col-12">
                                     <div class="row justify-content-end">
                                         <div class="col-auto">
-                                            <p>Step 1 of 2</p>
-                                            <button class="btn btn-primary" type="submit" id="submit-btn">Next</button>
+                                            <!-- <p>Step 1 of 2</p> -->
+                                            <button class="btn btn-primary" type="submit" id="submitBtn">Upload Form</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
