@@ -7,7 +7,9 @@ include_once 'comp/header.php';
 if (isset($_GET['email'])) {
     $email = htmlspecialchars($_GET['email']); // Sanitize input to prevent XSS
     
-} 
+} else {
+    $email = '';
+}
 ?>
 
 
