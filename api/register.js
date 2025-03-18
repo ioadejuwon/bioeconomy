@@ -30,7 +30,7 @@ $j(document).ready(function() {
 
             $j.ajax({
                 type: "POST",
-                url: "inc/register.php",
+                url: "inc/register1.php",
                 data: formData, 
                 contentType: false, 
                 processData: false, 
