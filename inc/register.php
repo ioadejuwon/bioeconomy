@@ -51,14 +51,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_stmt_close($stmt);
 
                 // Insert user into database
+                // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
+                //     $_SESSION['user_id'] = $user_id;
+                //     $response['status'] = 'success';
+                //     $response['message'] = sendConfirmationEmail($email, $fname, $response) ?
+                //         'Registration successful. Confirmation email sent.' :
+                //         'Registration successful, but email could not be sent.';
+                //     // $response['redirect_url'] = BASE_URL;
+                // } else {
+                //     $response['message'] = 'There was an error registering the user.';
+                // }
+
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
                     $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
-                    $response['message'] = sendConfirmationEmail($email, $fname) ?
-                        'Registration successful. Confirmation email sent.' :
-                        'Registration successful, but email could not be sent.';
-                    // $response['redirect_url'] = BASE_URL;
+                    $emailSent = sendConfirmationEmail($email, $fname, $response);
+                
+                    $response['message'] = 'Registration successful.';
+                    if (!$emailSent) {
+                        $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
+                    }
                 } else {
+                    $response['status'] = 'error';
                     $response['message'] = 'There was an error registering the user.';
                 }
             }
@@ -78,8 +92,7 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
     return mysqli_stmt_execute($stmt);
 }
 
-function uploadFile($file, $type, $file_id, &$response) // Pass $response by reference
-{
+function uploadFile($file, $type, $file_id, &$response) {
     $uploadDir = "uploads/";
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
@@ -113,21 +126,49 @@ function uploadFile($file, $type, $file_id, &$response) // Pass $response by ref
 }
 
 
-function sendConfirmationEmail($email, $fname)
-{
+// function sendConfirmationEmail($email, $fname, &$response){
+//     $templateFilePath = '../email/confirmation.html';
+//     if (!file_exists($templateFilePath)) {
+//         $response['message'] = 'File not found!';
+//         return false;
+//     }
+
+//     $message = file_get_contents($templateFilePath);
+//     $message = str_replace('{{FIRST_NAME}}', $fname, $message);
+//     $message = str_replace('{{YEAR}}', FOOTERYEAR, $message);
+
+//     $headers = 'From: Bioeconomy Conference <noreply@bioeconomyconf.com>' . "\r\n" .
+//         'Reply-To: hello@bioeconomyconf.com' . "\r\n" .
+//         'X-Mailer: PHP/' . phpversion() . "\r\n" .
+//         'MIME-Version: 1.0' . "\r\n" .
+//         'Content-Type: text/html; charset=ISO-8859-1';
+//     return mail($email, "Registration Successful 2 📮", $message, $headers);
+// }
+
+function sendConfirmationEmail($email, $fname, &$response) {
     $templateFilePath = '../email/confirmation.html';
     if (!file_exists($templateFilePath)) {
+        $response['message'] = 'Email template file not found!';
         return false;
     }
 
     $message = file_get_contents($templateFilePath);
-    $message = str_replace('{{FIRST_NAME}}', $fname, $message);
-    $message = str_replace('{{YEAR}}', FOOTERYEAR, $message);
+    $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
+    $message = str_replace('{{YEAR}}', defined('FOOTERYEAR') ? FOOTERYEAR : date('Y'), $message);
 
-    $headers = 'From: Bioeconomy Conference <noreply@bioeconomyconf.com>' . "\r\n" .
-        'Reply-To: hello@bioeconomyconf.com' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion() . "\r\n" .
-        'MIME-Version: 1.0' . "\r\n" .
-        'Content-Type: text/html; charset=ISO-8859-1';
-    return mail($email, "Registration Successful 2 📮", $message, $headers);
+    $headers = [
+        'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
+        'Reply-To: hello@bioeconomyconf.com',
+        'X-Mailer: PHP/' . phpversion(),
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=ISO-8859-1'
+    ];
+
+    $result = mail($email, "Registration Successful 📮", $message, implode("\r\n", $headers));
+    
+    if (!$result) {
+        $response['email_error'] = error_get_last()['message'] ?? 'Unknown email error';
+    }
+
+    return $result;
 }
