@@ -94,7 +94,7 @@ function uploadFile($file, $type, $file_id)
         return null;
     }
 
-    $fileName = $type . $file_id . "_" . basename($file["name"]);
+    $fileName = $type . $file_id;
     $filePath = $uploadDir . $fileName;
 
     return move_uploaded_file($file["tmp_name"], $filePath) ? $filePath : null;
