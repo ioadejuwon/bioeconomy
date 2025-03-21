@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
+        // mysqli_stmt_store_result($stmt);
 
         if (mysqli_stmt_num_rows($stmt) > 0) {
             $response['status'] = 'info';
@@ -74,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $response['message'] = 'Registration successful.';
                     if (!$emailSent) {
                         $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
+                    }else{
+                        $response['email_status'] = 'Email sent successfully.';
                     }
                 } else {
                     $response['status'] = 'error';
@@ -160,7 +162,7 @@ function sendConfirmationEmail($email, $fname, &$response)
 
     $message = file_get_contents($templateFilePath);
     $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
-    $message = str_replace('{{YEAR}}', defined('FOOTERYEAR') ? FOOTERYEAR : date('Y'), $message);
+    // $message = str_replace('{{YEAR}}', defined('FOOTERYEAR') ? FOOTERYEAR : date('Y'), $message);
 
     $headers = [
         'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
