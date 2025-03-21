@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['message'] = 'Please indicate the fee you paid.';
     } else {
         // Handle file uploads
-        $studentproof = uploadFile($_FILES['studentproof'], 'student_', $file_id);
-        $proof = uploadFile($_FILES['proof'], 'Proof_', $file_id);
+        $studentproof = uploadFile($_FILES['studentproof'], 'student_', $file_id, $response);
+        $proof = uploadFile($_FILES['proof'], 'Proof_', $file_id, $response);
 
         if (!$studentproof) {
             $response['message'] = 'Student proof upload failed. Check file type and size.';
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $response['message'] = sendConfirmationEmail($email, $fname) ?
                         'Registration successful. Confirmation email sent.' :
                         'Registration successful, but email could not be sent.';
-                    $response['redirect_url'] = 'Success was an error registering the user.';
+                    // $response['redirect_url'] = BASE_URL;
                 } else {
                     $response['message'] = 'There was an error registering the user.';
                 }
@@ -78,7 +78,7 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
     return mysqli_stmt_execute($stmt);
 }
 
-function uploadFile($file, $type, $file_id)
+function uploadFile($file, $type, $file_id, $response)
 {
     $uploadDir = "uploads/";
     if (!is_dir($uploadDir)) {
@@ -86,15 +86,17 @@ function uploadFile($file, $type, $file_id)
     }
 
     if ($file["size"] > 5 * 1024 * 1024) {
+        $response['message'] = $type.' file size is too large.';
         return null;
     }
 
     $allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
     if (!in_array($file["type"], $allowedTypes)) {
+        $response['message'] = $type.' file type not allowed. Upload only PDF, JPG or PNG.';
         return null;
     }
 
-    $fileName = $type . $file_id;
+    $fileName = $type . $file_id . "_" . basename($file["name"]);
     $filePath = $uploadDir . $fileName;
 
     return move_uploaded_file($file["tmp_name"], $filePath) ? $filePath : null;
