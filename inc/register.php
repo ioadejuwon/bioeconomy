@@ -28,27 +28,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (empty($fee)) {
         $response['message'] = 'Please indicate the fee you paid.';
     } else {
-        // Handle file uploads
-        $studentproof = uploadFile($_FILES['studentproof'], 'student_', $file_id, $response);
-        $proof = uploadFile($_FILES['proof'], 'Proof_', $file_id, $response);
+        // Check if email already exists
+        $sql = "SELECT email FROM bio_participants WHERE email = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
 
-        if (!$studentproof) {
-            $response['message'] = 'Student proof upload failed. Check file type and size.';
-        } elseif (!$proof) {
-            $response['message'] = 'Payment proof upload failed. Check file type and size.';
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            $response['status'] = 'info';
+            $response['message'] = 'Looks like you registered for the event already.';
         } else {
-            // Check if email already exists
-            $sql = "SELECT email FROM bio_participants WHERE email = ?";
-            $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "s", $email);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
+            mysqli_stmt_close($stmt);
 
-            if (mysqli_stmt_num_rows($stmt) > 0) {
-                $response['status'] = 'info';
-                $response['message'] = 'Looks like you registered for the event already.';
+            // Handle file uploads
+            $studentproof = uploadFile($_FILES['studentproof'], 'student_', $file_id, $response);
+            $proof = uploadFile($_FILES['proof'], 'Proof_', $file_id, $response);
+
+            if (!$studentproof) {
+                $response['message'] = 'Student proof upload failed. Check file type and size.';
+                exit;
+            } elseif (!$proof) {
+                $response['message'] = 'Payment proof upload failed. Check file type and size.';
+                exit;
             } else {
-                mysqli_stmt_close($stmt);
+
 
                 // Insert user into database
                 // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
@@ -66,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
                     $emailSent = sendConfirmationEmail($email, $fname, $response);
-                
+
                     $response['message'] = 'Registration successful.';
                     if (!$emailSent) {
                         $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
@@ -92,7 +96,8 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
     return mysqli_stmt_execute($stmt);
 }
 
-function uploadFile($file, $type, $file_id, &$response) {
+function uploadFile($file, $type, $file_id, &$response)
+{
     $uploadDir = "uploads/";
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
@@ -145,7 +150,8 @@ function uploadFile($file, $type, $file_id, &$response) {
 //     return mail($email, "Registration Successful 2 📮", $message, $headers);
 // }
 
-function sendConfirmationEmail($email, $fname, &$response) {
+function sendConfirmationEmail($email, $fname, &$response)
+{
     $templateFilePath = '../email/confirmation.html';
     if (!file_exists($templateFilePath)) {
         $response['message'] = 'Email template file not found!';
@@ -165,7 +171,7 @@ function sendConfirmationEmail($email, $fname, &$response) {
     ];
 
     $result = mail($email, "Registration Successful 📮", $message, implode("\r\n", $headers));
-    
+
     if (!$result) {
         $response['email_error'] = error_get_last()['message'] ?? 'Unknown email error';
     }
