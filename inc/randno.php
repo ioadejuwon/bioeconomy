@@ -3,7 +3,7 @@
 
 $n=10; //for order_id
 $k=5; //for order_id
-$j=4; //for order_id
+$j=9; //for order_id
 function getName($n) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randomString = '';

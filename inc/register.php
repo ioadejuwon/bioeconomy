@@ -78,7 +78,7 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
     return mysqli_stmt_execute($stmt);
 }
 
-function uploadFile($file, $type, $file_id, $response)
+function uploadFile($file, $type, $file_id, &$response) // Pass $response by reference
 {
     $uploadDir = "uploads/";
     if (!is_dir($uploadDir)) {
@@ -86,21 +86,32 @@ function uploadFile($file, $type, $file_id, $response)
     }
 
     if ($file["size"] > 5 * 1024 * 1024) {
-        $response['message'] = $type.' file size is too large.';
+        $response['message'] = $type . ' file size is too large.';
         return null;
     }
 
     $allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
     if (!in_array($file["type"], $allowedTypes)) {
-        $response['message'] = $type.' file type not allowed. Upload only PDF, JPG or PNG.';
+        $response['message'] = $type . ' file type not allowed. Upload only PDF, JPG, or PNG.';
         return null;
     }
 
-    $fileName = $type . $file_id . "_" . basename($file["name"]);
+    // Extract file extension and sanitize filename
+    $extension = pathinfo($file["name"], PATHINFO_EXTENSION);
+    $safeName = preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($file["name"], PATHINFO_FILENAME));
+
+    // Ensure unique filename
+    $fileName = $type . "_" . $file_id . "." . $extension;
     $filePath = $uploadDir . $fileName;
 
-    return move_uploaded_file($file["tmp_name"], $filePath) ? $filePath : null;
+    if (move_uploaded_file($file["tmp_name"], $filePath)) {
+        return $filePath;
+    } else {
+        $response['message'] = 'Failed to upload ' . $type . ' file.';
+        return null;
+    }
 }
+
 
 function sendConfirmationEmail($email, $fname)
 {
