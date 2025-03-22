@@ -23,7 +23,7 @@ $subject = "Welcome to the Conference 🎉";
 
 $response = [];
 $emailSent = sendEmail(
-    $email,
+    $to,
     $fname,
     $subject,
     'email/registration.html', // Path to the email template
