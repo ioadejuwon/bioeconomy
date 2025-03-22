@@ -6,42 +6,8 @@ require 'vendor/autoload.php'; // Load PHPMailer
 require 'inc/drc.php'; // Load DRC
 require 'inc/env.php'; // Load DRC
 
-// function sendConfirmationEmail($email, $fname, &$response) {
-//     $mail = new PHPMailer(true);
 
-//     try {
-//         // SMTP Configuration
-//         $mail->isSMTP();
-//         $mail->Host       = 'smtp.hostinger.com'; // Replace with your SMTP server
-//         $mail->SMTPAuth   = true;
-//         $mail->Username   = 'hello@bioeconomyconf.com'; // SMTP email
-//         $mail->Password   = 'N6a@d8?DSm'; // SMTP password
-//         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
-//         $mail->Port       = 587; // 465 for SSL, 587 for TLS
-
-//         // Sender & Recipient
-//         $mail->setFrom('hello@bioeconomyconf.com', 'Bioeconomy Conference'); // Must match your SMTP Username
-//         $mail->addAddress($email, $fname);
-//         $mail->addReplyTo('hello@bioeconomyconf.com', 'Bioeconomy Conference');
-
-//         // Email Content
-//         $mail->isHTML(true);
-//         $mail->Subject = 'Registration Successful 📮';
-//         $mail->Body    = "<p>Hi <b>{$fname}</b>,<br>Welcome to our event! 🎉</p>";
-
-//         // Send email
-//         $mail->send();
-//         return true;
-//     } catch (Exception $e) {
-//         $response['email_error'] = "Mail error: " . $mail->ErrorInfo;
-//         return false;
-//     }
-// }
-
-
-
-
-function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders = [], $from = BRAND_EMAIL, $fromName = BRAND_NAME, $replyTo = null, $cc = [], $bcc = [], $attachments = []) {
+function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders = [], $from = BRAND_EMAIL, $fromName = COMPANY, $replyTo = null, $cc = [], $bcc = [], $attachments = []) {
     $mail = new PHPMailer(true);
 
     try {
@@ -61,8 +27,9 @@ function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders 
 
         // Optional Reply-To
         if ($replyTo) {
-            $mail->addReplyTo($replyTo);
+            $mail->addReplyTo($replyTo, COMPANY);
         }
+      
 
         // Optional CC & BCC
         foreach ($cc as $email) {

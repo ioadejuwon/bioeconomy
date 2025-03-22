@@ -32,10 +32,8 @@ $emailSent = sendEmail(
     $response,
     [
         'FIRST_NAME' => $fname,
-        // 'event' => 'Bioeconomy Conference'
         'YEAR' => FOOTERYEAR
-    ],
-    $replyTo
+    ]
 );
 
 if ($emailSent) {
