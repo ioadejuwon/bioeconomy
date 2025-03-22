@@ -103,5 +103,3 @@ function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders 
     }
 }
 ?>
-
-?>
