@@ -140,10 +140,12 @@ function uploadFile($file, $type, $file_id, &$response){
 
     // Ensure unique filename
     $fileName = $type . "_" . $file_id . "." . $extension;
-    $filePath = $uploadlocation . $fileName;
+    $filePath = $uploadDir . $fileName;
+    $filePathLocation = $uploadlocation . $fileName;
 
-    if (move_uploaded_file($file["tmp_name"], $filePath)) {
+    if (move_uploaded_file($file["tmp_name"], $filePathLocation)) {
         // $response['message'] = 'Failed to move file '. $filePath ;
+        // return $filePath;
         return $filePath;
     } else {
         // $response['message'] = 'Failed to upload ' . $type . ' file.';
