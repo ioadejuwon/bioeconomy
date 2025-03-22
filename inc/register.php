@@ -107,13 +107,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         // Send email directly using mail()
                         $mail_sent = mail( $to, $subject, $message, $headers ); //Mail sent to vendor
                         if ( $mail_sent ) {
-                            $response['email_status'] = 'Email sent successfully.';
+                            $response['message'] = 'Email sent successfully.';
                         } else {
-                            $response['email_status'] = 'Email could not be sent: ' . (error_get_last()['message'] ?? 'Unknown error.');
+                            $response['message'] = 'Email could not be sent: ' . (error_get_last()['message'] ?? 'Unknown error.');
                         }
                         $response['message'] = 'Registration successful.d';
                     } else {
-                        $response['email_status'] = 'Email template file not found!';
+                        $response['message'] = 'Email template file not found!';
                     }
                 } else {
                     $response['status'] = 'error';
