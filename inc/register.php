@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fee = trim($_POST['fee']);
     $paymentproof = $_FILES['paymentproof'];
     $student = trim($_POST['student']);
-    $studentproof = $_FILES['studentproof'];;
+    $studentproof1 = $_FILES['studentproof'];
     $address = trim($_POST['address']);
 
     // Validate required fields
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['message'] = 'Please fill in your phone number.';
     } elseif (empty($fee)) {
         $response['message'] = 'Please indicate the fee you paid.';
-    } elseif ($student == '1' & empty($studentproof)) {
+    } elseif ( empty($studentproof1)) {
         $response['message'] = 'You need to upload evidence of studentship.';
     } else {
         // Check if email already exists
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_close($stmt);
 
             // Handle file uploads
-            $studentproof = uploadFile($studentproof, 'student_', $file_id, $response);
+            $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
             $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
 
             if (!$studentproof) {
@@ -118,7 +118,7 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
 
 function uploadFile($file, $type, $file_id, &$response){
     $uploadDir = "proof/";
-    $uploadlocation = "../". $uploadDir;
+    $uploadlocation = "../" . $uploadDir;
     if (!is_dir($uploadlocation)) {
         mkdir($uploadlocation, 0777, true);
     }
@@ -136,10 +136,10 @@ function uploadFile($file, $type, $file_id, &$response){
 
     // Extract file extension and sanitize filename
     $extension = pathinfo($file["name"], PATHINFO_EXTENSION);
-    $safeName = preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($file["name"], PATHINFO_FILENAME));
+    // $safeName = preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($file["name"], PATHINFO_FILENAME));
 
     // Ensure unique filename
-    $fileName = $type . "_" . $file_id . "." . $extension;
+    $fileName = $type . $file_id . "." . $extension;
     $filePath = $uploadDir . $fileName;
     $filePathLocation = $uploadlocation . $fileName;
 
