@@ -112,8 +112,7 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
     return mysqli_stmt_execute($stmt);
 }
 
-function uploadFile($file, $type, $file_id, &$response)
-{
+function uploadFile($file, $type, $file_id, &$response){
     $uploadDir = "uploads/";
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
@@ -138,7 +137,7 @@ function uploadFile($file, $type, $file_id, &$response)
     $fileName = $type . "_" . $file_id . "." . $extension;
     $filePath = $uploadDir . $fileName;
 
-    if (move_uploaded_file($file["tmp_name"], $filePath)) {
+    if (move_uploaded_file($file["tmp_name"], '../'.$filePath)) {
         return $filePath;
     } else {
         $response['message'] = 'Failed to upload ' . $type . ' file.';
