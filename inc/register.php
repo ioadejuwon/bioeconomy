@@ -114,9 +114,9 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
 
 function uploadFile($file, $type, $file_id, &$response){
     $uploadDir = "proof/";
-    // $uploadlocation = "../proof/";
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
+    $uploadlocation = "../proof/";
+    if (!is_dir($uploadlocation)) {
+        mkdir($uploadlocation, 0777, true);
     }
 
     if ($file["size"] > 5 * 1024 * 1024) {
@@ -139,90 +139,10 @@ function uploadFile($file, $type, $file_id, &$response){
     $filePath = $uploadDir . $fileName;
 
     if (move_uploaded_file($file["tmp_name"], $filePath)) {
+        $response['message'] = 'Failed to move file '. $filePath ;
         return $filePath;
     } else {
         $response['message'] = 'Failed to upload ' . $type . ' file.';
         return null;
     }
 }
-
-
-
-function sendConfirmationEmail($email, $fname, &$response)
-{
-    $templateFilePath = '../email/confirmation.html';
-    if (!file_exists($templateFilePath)) {
-        $response['message'] = 'Email template file not found!';
-        return false;
-    }
-
-    // Load email template
-    $message = file_get_contents($templateFilePath);
-    $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
-
-    // Headers
-    $headers = [
-        'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
-        'Reply-To: <hello@bioeconomyconf.com>',
-        'X-Mailer: PHP/' . phpversion(),
-        'MIME-Version: 1.0',
-        'Content-Type: text/html; charset=UTF-8'
-    ];
-
-    // Send email
-    $result = mail($email, "Registration Successful 📮", $message, implode("\n", $headers)); // Use "\n" instead of "\r\n"
-
-    if (!$result) {
-        $response['email_error'] = error_get_last()['message'] ?? 'Email could not be sent.';
-    }
-
-    return $result;
-}
-
-
-// function sendConfirmationEmail($email, $fname, &$response){
-//     $templateFilePath = '../email/confirmation.html';
-//     if (!file_exists($templateFilePath)) {
-//         $response['message'] = 'File not found!';
-//         return false;
-//     }
-
-//     $message = file_get_contents($templateFilePath);
-//     $message = str_replace('{{FIRST_NAME}}', $fname, $message);
-//     $message = str_replace('{{YEAR}}', FOOTERYEAR, $message);
-
-//     $headers = 'From: Bioeconomy Conference <noreply@bioeconomyconf.com>' . "\r\n" .
-//         'Reply-To: hello@bioeconomyconf.com' . "\r\n" .
-//         'X-Mailer: PHP/' . phpversion() . "\r\n" .
-//         'MIME-Version: 1.0' . "\r\n" .
-//         'Content-Type: text/html; charset=ISO-8859-1';
-//     return mail($email, "Registration Successful 2 📮", $message, $headers);
-// }
-
-// function sendConfirmationEmail($email, $fname, &$response){
-//     $templateFilePath = '../email/confirmation.html';
-//     if (!file_exists($templateFilePath)) {
-//         $response['message'] = 'Email template file not found!';
-//         return false;
-//     }
-
-//     $message = file_get_contents($templateFilePath);
-//     $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
-//     // $message = str_replace('{{YEAR}}', defined('FOOTERYEAR') ? FOOTERYEAR : date('Y'), $message);
-
-//     $headers = [
-//         'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
-//         'Reply-To: hello@bioeconomyconf.com',
-//         'X-Mailer: PHP/' . phpversion(),
-//         'MIME-Version: 1.0',
-//         'Content-Type: text/html; charset=ISO-8859-1'
-//     ];
-
-//     $result = mail($email, "Registration Successful 📮", $message, implode("\r\n", $headers));
-
-//     if (!$result) {
-//         $response['email_error'] = error_get_last()['message'] ?? 'Unknown email error';
-//     }
-
-//     return $result;
-// }
