@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = $fname . ' ' . $lname;
     $phone = trim($_POST['phone']);
     $fee = trim($_POST['fee']);
-    $paymentproof = trim($_FILES['paymentproof']);
+    $paymentproof = $_FILES['paymentproof'];
     $student = trim($_POST['student']);
-    $studentproof1 = trim($_FILES['studentproof']);
+    $studentproof1 = $_FILES['studentproof'];
     $address = trim($_POST['address']);
 
     // Validate required fields
