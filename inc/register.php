@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
-        // mysqli_stmt_store_result($stmt);
+        mysqli_stmt_store_result($stmt);
 
         if (mysqli_stmt_num_rows($stmt) > 0) {
             $response['status'] = 'info';
@@ -133,6 +133,38 @@ function uploadFile($file, $type, $file_id, &$response)
 }
 
 
+
+function sendConfirmationEmail($email, $fname, &$response){
+    $templateFilePath = '../email/confirmation.html';
+    if (!file_exists($templateFilePath)) {
+        $response['message'] = 'Email template file not found!';
+        return false;
+    }
+
+    // Load email template
+    $message = file_get_contents($templateFilePath);
+    $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
+
+    // Headers
+    $headers = [
+        'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
+        'Reply-To: <hello@bioeconomyconf.com>',
+        'X-Mailer: PHP/' . phpversion(),
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=UTF-8'
+    ];
+
+    // Send email
+    $result = mail($email, "Registration Successful 📮", $message, implode("\n", $headers)); // Use "\n" instead of "\r\n"
+
+    if (!$result) {
+        $response['email_error'] = error_get_last()['message'] ?? 'Email could not be sent.';
+    }
+
+    return $result;
+}
+
+
 // function sendConfirmationEmail($email, $fname, &$response){
 //     $templateFilePath = '../email/confirmation.html';
 //     if (!file_exists($templateFilePath)) {
@@ -152,31 +184,30 @@ function uploadFile($file, $type, $file_id, &$response)
 //     return mail($email, "Registration Successful 2 📮", $message, $headers);
 // }
 
-function sendConfirmationEmail($email, $fname, &$response)
-{
-    $templateFilePath = '../email/confirmation.html';
-    if (!file_exists($templateFilePath)) {
-        $response['message'] = 'Email template file not found!';
-        return false;
-    }
+// function sendConfirmationEmail($email, $fname, &$response){
+//     $templateFilePath = '../email/confirmation.html';
+//     if (!file_exists($templateFilePath)) {
+//         $response['message'] = 'Email template file not found!';
+//         return false;
+//     }
 
-    $message = file_get_contents($templateFilePath);
-    $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
-    // $message = str_replace('{{YEAR}}', defined('FOOTERYEAR') ? FOOTERYEAR : date('Y'), $message);
+//     $message = file_get_contents($templateFilePath);
+//     $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
+//     // $message = str_replace('{{YEAR}}', defined('FOOTERYEAR') ? FOOTERYEAR : date('Y'), $message);
 
-    $headers = [
-        'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
-        'Reply-To: hello@bioeconomyconf.com',
-        'X-Mailer: PHP/' . phpversion(),
-        'MIME-Version: 1.0',
-        'Content-Type: text/html; charset=ISO-8859-1'
-    ];
+//     $headers = [
+//         'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
+//         'Reply-To: hello@bioeconomyconf.com',
+//         'X-Mailer: PHP/' . phpversion(),
+//         'MIME-Version: 1.0',
+//         'Content-Type: text/html; charset=ISO-8859-1'
+//     ];
 
-    $result = mail($email, "Registration Successful 📮", $message, implode("\r\n", $headers));
+//     $result = mail($email, "Registration Successful 📮", $message, implode("\r\n", $headers));
 
-    if (!$result) {
-        $response['email_error'] = error_get_last()['message'] ?? 'Unknown email error';
-    }
+//     if (!$result) {
+//         $response['email_error'] = error_get_last()['message'] ?? 'Unknown email error';
+//     }
 
-    return $result;
-}
+//     return $result;
+// }
