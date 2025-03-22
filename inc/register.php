@@ -35,10 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
 
-        if (mysqli_stmt_num_rows($stmt) > 0) {
-            $response['status'] = 'info';
-            $response['message'] = 'Looks like you registered for the event already.';
-        } else {
+        // if (mysqli_stmt_num_rows($stmt) > 0) {
+        //     $response['status'] = 'info';
+        //     $response['message'] = 'Looks like you registered for the event already.';
+        // } else {
             mysqli_stmt_close($stmt);
 
             // Handle file uploads
@@ -66,22 +66,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 //     $response['message'] = 'There was an error registering the user.';
                 // }
 
+                // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
+                //     $_SESSION['user_id'] = $user_id;
+                //     $response['status'] = 'success';
+                //     $emailSent = sendConfirmationEmail($email, $fname, $response);
+
+                //     $response['message'] = 'Registration successful.';
+                //     if (!$emailSent) {
+                //         $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
+                //     }else{
+                //         $response['email_status'] = 'Email sent successfully.';
+                //     }
+                // } else {
+                //     $response['status'] = 'error';
+                //     $response['message'] = 'There was an error registering the user.';
+                // }
+
+
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
                     $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
-                    $emailSent = sendConfirmationEmail($email, $fname, $response);
-
-                    $response['message'] = 'Registration successful.';
-                    if (!$emailSent) {
-                        $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
-                    }else{
-                        $response['email_status'] = 'Email sent successfully.';
+                    
+                
+                    // Load email template
+                    $templateFilePath = '../email/confirmation.html';
+                    if (file_exists($templateFilePath)) {
+                        $message = file_get_contents($templateFilePath);
+                        $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
+                
+                        // Email headers
+                        $headers = [
+                            'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
+                            'Reply-To: <hello@bioeconomyconf.com>',
+                            'X-Mailer: PHP/' . phpversion(),
+                            'MIME-Version: 1.0',
+                            'Content-Type: text/html; charset=UTF-8'
+                        ];
+                
+                        // Send email directly using mail()
+                        if (mail($email, "Registration Successful 📮", $message, implode("\n", $headers))) {
+                            $response['email_status'] = 'Email sent successfully.';
+                        } else {
+                            $response['email_status'] = 'Email could not be sent: ' . (error_get_last()['message'] ?? 'Unknown error.');
+                        }
+                        $response['message'] = 'Registration successful.';
+                    } else {
+                        $response['email_status'] = 'Email template file not found!';
                     }
                 } else {
                     $response['status'] = 'error';
                     $response['message'] = 'There was an error registering the user.';
                 }
-            }
+
+                
+            // }
         }
     }
 }
