@@ -5,6 +5,7 @@ $footeryear = date("Y");
 define('FOOTERYEAR', $footeryear);
 
 define('BRAND_EMAIL', 'hello@bioeconomyconf.com');
+define('REPLY_TO', 'bioeconomy@oauife.edu.ng');
 define('COMPANY', 'Bioeconomy Conference');
 
 
