@@ -10,7 +10,7 @@ require 'inc/drc.php'; // Load DRC
 
 $fname = 'Isaac';
 $to = "ioadejuwon@gmail.com"; // Replace with your email
-$subject = "Registration Successful 🎉";
+$subject = "Registration Successfull 🎉";
 $replyTo = BRAND_EMAIL;
 
 // if (mail($to, $subject, $message, $headers)) {
