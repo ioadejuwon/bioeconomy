@@ -63,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
 
-                    $subject = "Registration Successful 📮";
+                    // $subject = "Registration Successful 📮";
+                    $subject = "Registration Successful ";
 
 
                     $emailSent = sendEmail(
@@ -78,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         ],
                         $from = BRAND_EMAIL,
                         $fromName = COMPANY,
-                        $replyTo = BRAND_EMAIL,
+                        $replyTo = REPLY_TO,
                     );
 
                     if ($emailSent) {
