@@ -1,5 +1,5 @@
 $j(document).ready(function() {
-    console.log("Register form loaded");
+    // console.log("Register form loaded");
 
     // Ensure 'Student Proof' is required only when 'Yes' is selected
     $j('select[name="student"]').on("change", function() {
@@ -11,13 +11,13 @@ $j(document).ready(function() {
     });
 
     // Show selected file name
-    $j('input[type="file"]').on("change", function() {
-        let fileName = $j(this).val().split("\\").pop();
-        if (fileName) {
-            $j(this).next('.file-name-display').remove();
-            $j(this).after(`<small class="file-name-display text-muted">${fileName}</small>`);
-        }
-    });
+    // $j('input[type="file"]').on("change", function() {
+    //     let fileName = $j(this).val().split("\\").pop();
+    //     if (fileName) {
+    //         $j(this).next('.file-name-display').remove();
+    //         $j(this).after(`<small class="file-name-display text-muted">${fileName}</small>`);
+    //     }
+    // });
 
     if ($j("#registerForm").length) {
         $j("#registerForm").on("submit", function(event) {

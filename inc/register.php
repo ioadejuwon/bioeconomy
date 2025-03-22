@@ -110,7 +110,7 @@ exit;
 
 function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)
 {
-    $sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, proof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, paymentproof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ssssssssss", $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address);
     return mysqli_stmt_execute($stmt);
@@ -143,10 +143,10 @@ function uploadFile($file, $type, $file_id, &$response){
     $filePath = $uploadlocation . $fileName;
 
     if (move_uploaded_file($file["tmp_name"], $filePath)) {
-        $response['message'] = 'Failed to move file '. $filePath ;
+        // $response['message'] = 'Failed to move file '. $filePath ;
         return $filePath;
     } else {
-        $response['message'] = 'Failed to upload ' . $type . ' file.';
+        // $response['message'] = 'Failed to upload ' . $type . ' file.';
         return null;
     }
 }
