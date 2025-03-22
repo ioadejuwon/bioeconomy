@@ -9,7 +9,7 @@ if (function_exists('mail')) {
 $to = "ioadejuwon@gmail.com"; // Replace with your email
 $subject = "Test Email from Hostinger";
 $message = "This is a test email sent using PHP mail() function.";
-$headers = "From: noreply@bioeconomyconf.app" . "\r\n" . "Reply-To: hello@bioeconomyconf.app";
+$headers = "From: noreply@bioeconomyconf.com" . "\r\n" . "Reply-To: hello@bioeconomyconf.com";
 
 if (mail($to, $subject, $message, $headers)) {
     echo "Mail sent successfully!";
