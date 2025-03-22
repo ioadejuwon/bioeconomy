@@ -3,6 +3,7 @@ set_time_limit(60);
 include_once "config.php";
 include_once "drc.php";
 include_once "randno.php";
+require '../send.php';
 session_start();
 
 $response = ['status' => 'error', 'message' => ''];
@@ -35,92 +36,90 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
 
-        // if (mysqli_stmt_num_rows($stmt) > 0) {
-        //     $response['status'] = 'info';
-        //     $response['message'] = 'Looks like you registered for the event already.';
-        // } else {
-        mysqli_stmt_close($stmt);
-
-        // Handle file uploads
-        $studentproof = uploadFile($_FILES['studentproof'], 'student_', $file_id, $response);
-        $proof = uploadFile($_FILES['proof'], 'Proof_', $file_id, $response);
-
-        if (!$studentproof) {
-            $response['message'] = 'Student proof upload failed. Check file type and size.';
-            exit;
-        } elseif (!$proof) {
-            $response['message'] = 'Payment proof upload failed. Check file type and size.';
-            exit;
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            $response['status'] = 'info';
+            $response['message'] = 'Looks like you registered for the event already.';
         } else {
+            mysqli_stmt_close($stmt);
 
+            // Handle file uploads
+            $studentproof = uploadFile($_FILES['studentproof'], 'student_', $file_id, $response);
+            $proof = uploadFile($_FILES['proof'], 'Proof_', $file_id, $response);
 
-            // Insert user into database
-            // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
-            //     $_SESSION['user_id'] = $user_id;
-            //     $response['status'] = 'success';
-            //     $response['message'] = sendConfirmationEmail($email, $fname, $response) ?
-            //         'Registration successful. Confirmation email sent.' :
-            //         'Registration successful, but email could not be sent.';
-            //     // $response['redirect_url'] = BASE_URL;
-            // } else {
-            //     $response['message'] = 'There was an error registering the user.';
-            // }
-
-            // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
-            //     $_SESSION['user_id'] = $user_id;
-            //     $response['status'] = 'success';
-            //     $emailSent = sendConfirmationEmail($email, $fname, $response);
-
-            //     $response['message'] = 'Registration successful.';
-            //     if (!$emailSent) {
-            //         $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
-            //     }else{
-            //         $response['email_status'] = 'Email sent successfully.';
-            //     }
-            // } else {
-            //     $response['status'] = 'error';
-            //     $response['message'] = 'There was an error registering the user.';
-            // }
-
-
-            if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
-                $_SESSION['user_id'] = $user_id;
-                $response['status'] = 'success';
-
-                $subject = "Registration Successful 📮";
-
-
-                $emailSent = sendEmail(
-                    $to = $email,
-                    $toName = $fname,
-                    $subject,
-                    '../email/register.html', // Path to the email template
-                    $response,
-                    [
-                        'FIRST_NAME' => $fname,
-                        'YEAR' => FOOTERYEAR
-                    ],
-                    $from = BRAND_EMAIL,
-                    $fromName = COMPANY,
-                    $replyTo = BRAND_EMAIL,
-                );
-
-                if ($emailSent) {
-                    // echo "Registration email sent!";
-                    $response['message'] = 'Registration successful.';
-                    $response['message'] = 'Email sent successfully.';
-                } else {
-                    $response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
-                }
-                // $response['message'] = 'Registration successful.xdc';
-
+            if (!$studentproof) {
+                $response['message'] = 'Student proof upload failed. Check file type and size.';
+                exit;
+            } elseif (!$proof) {
+                $response['message'] = 'Payment proof upload failed. Check file type and size.';
+                exit;
             } else {
-                $response['status'] = 'error';
-                $response['message'] = 'There was an error registering the user.';
+
+
+                // Insert user into database
+                // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
+                //     $_SESSION['user_id'] = $user_id;
+                //     $response['status'] = 'success';
+                //     $response['message'] = sendConfirmationEmail($email, $fname, $response) ?
+                //         'Registration successful. Confirmation email sent.' :
+                //         'Registration successful, but email could not be sent.';
+                //     // $response['redirect_url'] = BASE_URL;
+                // } else {
+                //     $response['message'] = 'There was an error registering the user.';
+                // }
+
+                // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
+                //     $_SESSION['user_id'] = $user_id;
+                //     $response['status'] = 'success';
+                //     $emailSent = sendConfirmationEmail($email, $fname, $response);
+
+                //     $response['message'] = 'Registration successful.';
+                //     if (!$emailSent) {
+                //         $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
+                //     }else{
+                //         $response['email_status'] = 'Email sent successfully.';
+                //     }
+                // } else {
+                //     $response['status'] = 'error';
+                //     $response['message'] = 'There was an error registering the user.';
+                // }
+
+
+                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
+                    $_SESSION['user_id'] = $user_id;
+                    $response['status'] = 'success';
+
+                    $subject = "Registration Successful 📮";
+
+
+                    $emailSent = sendEmail(
+                        $to = $email,
+                        $toName = $fname,
+                        $subject,
+                        '../email/register.html', // Path to the email template
+                        $response,
+                        [
+                            'FIRST_NAME' => $fname,
+                            'YEAR' => FOOTERYEAR
+                        ],
+                        $from = BRAND_EMAIL,
+                        $fromName = COMPANY,
+                        $replyTo = BRAND_EMAIL,
+                    );
+
+                    if ($emailSent) {
+                        // echo "Registration email sent!";
+                        $response['message'] = 'Registration successful.';
+                        $response['message'] = 'Email sent successfully.';
+                    } else {
+                        $response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
+                    }
+                    // $response['message'] = 'Registration successful.xdc';
+
+                } else {
+                    $response['status'] = 'error';
+                    $response['message'] = 'There was an error registering the user.';
+                }
             }
-
-
-            // }
         }
     }
 }
