@@ -95,16 +95,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
                 
                         // Email headers
-                        $headers = [
-                            'From: Bioeconomy Conference <noreply@bioeconomyconf.com>',
-                            'Reply-To: <hello@bioeconomyconf.com>',
-                            'X-Mailer: PHP/' . phpversion(),
-                            'MIME-Version: 1.0',
-                            'Content-Type: text/html; charset=UTF-8'
-                        ];
+                        $headers = 'From: Bioeconomy Conference <noreply@bioeconomyconf.com>'. "\r\n" .
+                            'Reply-To: <hello@bioeconomyconf.com>'. "\r\n" .
+                            'X-Mailer: PHP/' . phpversion(). "\r\n" .
+                            'MIME-Version: 1.0'. "\r\n" .
+                            'Content-Type: text/html; charset=UTF-8';
+
+                    
                 
+                        $subject = "Registration Successful 📮";
                         // Send email directly using mail()
-                        if (mail($email, "Registration Successful 📮", $message, implode("\n", $headers))) {
+                        $mail_sent = mail( $to, $subject, $message, $headers ); //Mail sent to vendor
+                        if ( $mail_sent ) {
                             $response['email_status'] = 'Email sent successfully.';
                         } else {
                             $response['email_status'] = 'Email could not be sent: ' . (error_get_last()['message'] ?? 'Unknown error.');
