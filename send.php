@@ -18,7 +18,7 @@ function sendConfirmationEmail($email, $fname, &$response) {
         $mail->Port       = 587; // 465 for SSL, 587 for TLS
 
         // Sender & Recipient
-        $mail->setFrom('noreply@bioeconomyconf.com', 'Bioeconomy Conference');
+        $mail->setFrom('hello@bioeconomyconf.com', 'Bioeconomy Conference'); // Must match your SMTP Username
         $mail->addAddress($email, $fname);
         $mail->addReplyTo('hello@bioeconomyconf.com', 'Bioeconomy Conference');
 
