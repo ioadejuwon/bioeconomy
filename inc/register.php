@@ -90,10 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                     // Load email template
                     $templateFilePath = '../email/confirmation.html';
-                    if (file_exists($templateFilePath)) {
-                        $message = file_get_contents($templateFilePath);
-                        $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
-                
+                    if (file_exists($templateFilePath)) {                
+                        $message = file_get_contents( $templateFilePath );
+                        $message = str_replace( '{{FIRST_NAME}}', $fname, $message );
+                        $message = str_replace( '{{YEAR}}', FOOTERYEAR, $message );
+                        
                         // Email headers
                         $headers = 'From: Bioeconomy Conference <noreply@bioeconomyconf.com>'. "\r\n" .
                             'Reply-To: <hello@bioeconomyconf.com>'. "\r\n" .
@@ -111,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         } else {
                             $response['message'] = 'Email could not be sent: ' . (error_get_last()['message'] ?? 'Unknown error.');
                         }
-                        $response['message'] = 'Registration successful.d';
+                        $response['message'] = 'Registration successful.xdc';
                     } else {
                         $response['message'] = 'Email template file not found!';
                     }
