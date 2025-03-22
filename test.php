@@ -1,5 +1,6 @@
 <?php
 require 'send.php';
+require 'inc/drc.php'; // Load DRC  
 
 // if (function_exists('mail')) {
 //     echo "PHP mail() function is enabled!";
@@ -10,6 +11,7 @@ require 'send.php';
 $fname = 'Isaac';
 $to = "ioadejuwon@gmail.com"; // Replace with your email
 $subject = "Welcome to the Conference 🎉";
+$replyTo = BRAND_EMAIL;
 
 // if (mail($to, $subject, $message, $headers)) {
 //     echo "Mail sent successfully!";
@@ -32,7 +34,8 @@ $emailSent = sendEmail(
         'FIRST_NAME' => $fname,
         // 'event' => 'Bioeconomy Conference'
         'YEAR' => FOOTERYEAR
-    ]
+    ],
+    $replyTo
 );
 
 if ($emailSent) {
