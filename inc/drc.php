@@ -4,6 +4,9 @@ $user_id = $_SESSION['user_id'];
 $footeryear = date("Y");
 define('FOOTERYEAR', $footeryear);
 
+define('BRAND_EMAIL', 'hello@bioeconomyconf.com');
+
+
 define('NAIRA', '₦');
 define('DOLLAR', '$');
 define('EURO', '€');

@@ -7,9 +7,9 @@ require 'send.php';
 //     echo "PHP mail() function is disabled on this server.";
 // }
 
-
+$fname = 'Isaac';
 $to = "ioadejuwon@gmail.com"; // Replace with your email
-$subject = "Test Email from Hostinger";
+$subject = "Welcome to the Conference 🎉";
 
 // if (mail($to, $subject, $message, $headers)) {
 //     echo "Mail sent successfully!";
@@ -20,13 +20,22 @@ $subject = "Test Email from Hostinger";
 
 
 
+
 $response = [];
-$emailSent = sendConfirmationEmail($to, 'John Doe', $response);
+$emailSent = sendEmail(
+    $email,
+    $fname,
+    $subject,
+    'email/registration.html', // Path to the email template
+    $response,
+    [
+        'FIRST_NAME' => $fname,
+        // 'event' => 'Bioeconomy Conference'
+    ]
+);
 
 if ($emailSent) {
-    echo "Email sent successfully!";
+    echo "Registration email sent!";
 } else {
     echo "Email failed: " . ($response['email_error'] ?? 'Unknown error');
 }
-?>
-
