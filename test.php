@@ -21,9 +21,9 @@ $emailSent = sendEmail(
         'FIRST_NAME' => $fname,
         'YEAR' => FOOTERYEAR
     ],
-    $from,
-    $fromName,
-    $replyTo
+    $from = BRAND_EMAIL,
+    $fromName = COMPANY,
+    $replyTo = BRAND_EMAIL,
 );
 
 if ($emailSent) {
