@@ -46,6 +46,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['login'] ) ) {
 					$response['message'] = 'Admin ID is ' . $admin_id;
 					$response['redirect_url'] = ! empty( $_POST['url'] ) ? $_POST['url'] : ADMIN_DASHBOARD; // Add redirect URL to response
 				}
+				$response['message'] = '2Admin ID is ' . $admin_id;
 			} else {
 				$response['status'] = 'error';
 				$response['message'] = 'Looks like you entered the wrong email address or password!';
