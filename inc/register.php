@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                 
                     // Load email template
-                    $templateFilePath = '../email/confirmation.html';
+                    $templateFilePath = 'email/confirmation.html';
                     if (file_exists($templateFilePath)) {
                         $message = file_get_contents($templateFilePath);
                         $message = str_replace('{{FIRST_NAME}}', htmlspecialchars($fname, ENT_QUOTES, 'UTF-8'), $message);
