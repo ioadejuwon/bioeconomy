@@ -1,4 +1,11 @@
 <?php
+if (function_exists('mail')) {
+    echo "PHP mail() function is enabled!";
+} else {
+    echo "PHP mail() function is disabled on this server.";
+}
+?>
+<?php
 $to = "ioadejuwon@gmail.com"; // Replace with your email
 $subject = "Test Email from Hostinger";
 $message = "This is a test email sent using PHP mail() function.";
