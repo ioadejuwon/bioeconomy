@@ -113,7 +113,7 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
 }
 
 function uploadFile($file, $type, $file_id, &$response){
-    $uploadDir = "uploads/";
+    $uploadDir = "proof/";
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
