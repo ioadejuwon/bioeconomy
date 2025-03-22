@@ -114,9 +114,9 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
 
 function uploadFile($file, $type, $file_id, &$response){
     $uploadDir = "proof/";
-    $uploadlocation = "../proof/";
-    if (!is_dir($uploadlocation)) {
-        mkdir($uploadlocation, 0777, true);
+    // $uploadlocation = "../proof/";
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
     }
 
     if ($file["size"] > 5 * 1024 * 1024) {
