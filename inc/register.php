@@ -114,8 +114,9 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
 
 function uploadFile($file, $type, $file_id, &$response){
     $uploadDir = "proof/";
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
+    $uploadlocation = "../proof/";
+    if (!is_dir($uploadlocation)) {
+        mkdir($uploadlocation, 0777, true);
     }
 
     if ($file["size"] > 5 * 1024 * 1024) {
@@ -137,7 +138,7 @@ function uploadFile($file, $type, $file_id, &$response){
     $fileName = $type . "_" . $file_id . "." . $extension;
     $filePath = $uploadDir . $fileName;
 
-    if (move_uploaded_file($file["tmp_name"], '../'.$filePath)) {
+    if (move_uploaded_file($file["tmp_name"], $filePath)) {
         return $filePath;
     } else {
         $response['message'] = 'Failed to upload ' . $type . ' file.';
