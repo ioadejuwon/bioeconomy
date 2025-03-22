@@ -2,6 +2,7 @@
 set_time_limit(60);
 include_once "config.php";
 include_once "drc.php";
+include_once "env.php";
 include_once "randno.php";
 require '../send.php';
 session_start();
@@ -56,32 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                 // Insert user into database
-                // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
-                //     $_SESSION['user_id'] = $user_id;
-                //     $response['status'] = 'success';
-                //     $response['message'] = sendConfirmationEmail($email, $fname, $response) ?
-                //         'Registration successful. Confirmation email sent.' :
-                //         'Registration successful, but email could not be sent.';
-                //     // $response['redirect_url'] = BASE_URL;
-                // } else {
-                //     $response['message'] = 'There was an error registering the user.';
-                // }
-
-                // if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
-                //     $_SESSION['user_id'] = $user_id;
-                //     $response['status'] = 'success';
-                //     $emailSent = sendConfirmationEmail($email, $fname, $response);
-
-                //     $response['message'] = 'Registration successful.';
-                //     if (!$emailSent) {
-                //         $response['email_status'] = 'Email could not be sent: ' . ($response['email_error'] ?? 'Unknown error.');
-                //     }else{
-                //         $response['email_status'] = 'Email sent successfully.';
-                //     }
-                // } else {
-                //     $response['status'] = 'error';
-                //     $response['message'] = 'There was an error registering the user.';
-                // }
 
 
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
