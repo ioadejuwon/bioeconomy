@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         } else {
                             $response['email_status'] = 'Email could not be sent: ' . (error_get_last()['message'] ?? 'Unknown error.');
                         }
-                        $response['message'] = 'Registration successful.';
+                        $response['message'] = 'Registration successful.d';
                     } else {
                         $response['email_status'] = 'Email template file not found!';
                     }
