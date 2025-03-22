@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $to = $email,
                         $toName = $fname,
                         $subject,
-                        '../email/register.html', // Path to the email template
+                        '../email/registration.html', // Path to the email template
                         $response,
                         [
                             'FIRST_NAME' => $fname,

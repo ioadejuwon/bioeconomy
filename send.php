@@ -65,7 +65,7 @@ function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders 
         $mail->send();
         return true;
     } catch (Exception $e) {
-        $response['email_error'] = "Mail error: " . $mail->ErrorInfo;
+        $response['message'] = "Mail error: " . $mail->ErrorInfo;
         return false;
     }
 }
