@@ -41,11 +41,12 @@ require 'inc/env.php'; // Load DRC
 
 
 
-function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders = [], $from = BRAND_EMAIL, $fromName = BRAND_EMAIL, $replyTo = null, $cc = [], $bcc = [], $attachments = []) {
+function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders = [], $from = BRAND_EMAIL, $fromName = BRAND_NAME, $replyTo = null, $cc = [], $bcc = [], $attachments = []) {
     $mail = new PHPMailer(true);
 
     try {
         // SMTP Configuration
+        $mail->CharSet = 'UTF-8'; // ✅ Ensure proper emoji encoding
         $mail->isSMTP();
         $mail->Host       = 'smtp.hostinger.com'; // Replace with your SMTP server
         $mail->SMTPAuth   = true;

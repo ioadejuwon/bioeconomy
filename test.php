@@ -31,6 +31,7 @@ $emailSent = sendEmail(
     [
         'FIRST_NAME' => $fname,
         // 'event' => 'Bioeconomy Conference'
+        'YEAR' => FOOTERYEAR
     ]
 );
 
