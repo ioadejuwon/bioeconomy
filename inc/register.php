@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = $fname . ' ' . $lname;
     $phone = trim($_POST['phone']);
     $fee = trim($_POST['fee']);
+    $paymentproof = $_FILES['paymentproof'];
     $student = trim($_POST['student']);
+    $studentproof = $_FILES['studentproof'];;
     $address = trim($_POST['address']);
 
     // Validate required fields
@@ -29,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['message'] = 'Please fill in your phone number.';
     } elseif (empty($fee)) {
         $response['message'] = 'Please indicate the fee you paid.';
+    } elseif ($student == '1' & empty($studentproof)) {
+        $response['message'] = 'You need to upload evidence of studentship.';
     } else {
         // Check if email already exists
         $sql = "SELECT email FROM bio_participants WHERE email = ?";
@@ -44,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_close($stmt);
 
             // Handle file uploads
-            $studentproof = uploadFile($_FILES['studentproof'], 'student_', $file_id, $response);
-            $proof = uploadFile($_FILES['proof'], 'Proof_', $file_id, $response);
+            $studentproof = uploadFile($studentproof, 'student_', $file_id, $response);
+            $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
 
             if (!$studentproof) {
                 $response['message'] = 'Student proof upload failed. Check file type and size.';
@@ -114,7 +118,7 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
 
 function uploadFile($file, $type, $file_id, &$response){
     $uploadDir = "proof/";
-    $uploadlocation = "../proof/";
+    $uploadlocation = "../". $uploadDir;
     if (!is_dir($uploadlocation)) {
         mkdir($uploadlocation, 0777, true);
     }

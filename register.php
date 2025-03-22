@@ -156,7 +156,7 @@ if (isset($_GET['email'])) {
                                     <div class="form-group">
                                         <label class="form-label">Evidence of Payment </label>
                                         <div class="form-control-wrap">
-                                            <input type="file" name="proof" class="form-control" required>
+                                            <input type="file" name="paymentproof" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
