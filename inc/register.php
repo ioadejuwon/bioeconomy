@@ -50,6 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Handle file uploads
             $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
             $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
+            if (empty($proof)) {
+                $proof = "No proof provided"; // Insert this text if no file is uploaded
+            }
 
             if (!$studentproof) {
                 $response['message'] = 'Student proof upload failed. Check file type and size.';
@@ -150,11 +153,11 @@ function uploadFile($file, $type, $file_id, &$response)
     $filePathLocation = $uploadlocation . $fileName;
 
     if (move_uploaded_file($file["tmp_name"], $filePathLocation)) {
-        // $response['message'] = 'Failed to move file '. $filePath ;
+        $response['message'] = 'Failed to move file '. $filePath ;
         // return $filePath;
         return $filePath;
     } else {
-        // $response['message'] = 'Failed to upload ' . $type . ' file.';
+        $response['message'] = 'Failed to upload ' . $type . ' file.';
         return null;
     }
 }
