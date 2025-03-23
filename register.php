@@ -214,7 +214,7 @@ if (isset($_GET['email'])) {
     </div>
 </section>
 
-
+<script src="api/register.js"></script>
 <?php
 include_once 'comp/footer.php';
 include_once 'comp/tail.php';

@@ -170,7 +170,7 @@ include_once 'comp/header.php';
         </div>
     </div>
 </section>
-
+<script src="api/abstract.js"></script>
 <?php
 include_once 'comp/footer.php';
 include_once 'comp/tail.php';
