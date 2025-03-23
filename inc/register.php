@@ -53,6 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($proof)) {
                 $proof = "No proof provided"; // Insert this text if no file is uploaded
             }
+            if (empty($studentproof)) {
+                $studentproof = "No proof provided"; // Insert this text if no file is uploaded
+            }
 
             if (!$studentproof) {
                 $response['message'] = 'Student proof upload failed. Check file type and size.';
