@@ -24,21 +24,28 @@ function showNotification(message, type = 'success') {
 // Disable Dropzone auto-discovery
 Dropzone.autoDiscover = false;
 
-// Initialize Dropzone only on the #dropzoneArea div
 var myDropzone = new Dropzone("#dropzoneArea", {
-    url: "inc/api_abstracts.php",
-    autoProcessQueue: false,  // Prevent automatic upload
-    parallelUploads: 5,  // Allows multiple files
+    url: "inc/abstracts.php",
+    autoProcessQueue: false,  // Prevent auto upload
+    parallelUploads: 5,  // Allow multiple files
     uploadMultiple: true,
     addRemoveLinks: true,
-    acceptedFiles: "image/*,application/pdf",
-    paramName: "files[]",  // Matches PHP handling for multiple files
+    acceptedFiles: ".pdf,.doc,.docx", // Only allow PDFs and Word documents
+    dictInvalidFileType: "Only PDF and DOC/DOCX files are allowed.",
+    paramName: "file",  // Matches PHP handling
 
     init: function () {
         var dzInstance = this;
 
         document.getElementById("submitBtn").addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent form from submitting immediately
+            e.preventDefault(); // Prevent default form submission
+
+            // Check if files are added
+            if (dzInstance.files.length === 0) {
+                // alert("Please upload at least one file.");
+                showNotification("Please upload at least one file.", "info");
+                return;
+            }
 
             // Append form data to Dropzone request
             dzInstance.options.params = {
@@ -53,10 +60,34 @@ var myDropzone = new Dropzone("#dropzoneArea", {
             dzInstance.processQueue();
         });
 
-        // After successful upload, submit the form
+        // On successful file upload, show a success message
         dzInstance.on("successmultiple", function (files, response) {
-            document.getElementById("edit-images-dropzone").submit();
+            if (response.status === "success") {
+                // alert(response.message);
+                showNotification(response.message, "success");
+                // window.location.href = "success_page.php"; // Redirect to success page
+            } else if (response.status === "info") {
+                showNotification(response.message, "info");
+            } else {
+                showNotification(response.message, "error");
+            }
         });
+
+        dzInstance.on("error", function (file, message) {
+            // alert("Upload failed: " + message);
+            showNotification('Upload failed: '+ message, "error");
+        });
+
+        // dzInstance.on("queuecomplete", function () {
+        //     // console.log("All uploads completed.");
+        //     showNotification('All uploads completed.', "success");
+        // });
+        dzInstance.on("queuecomplete", function () {
+            showNotification('All uploads completed.', "success");
+            dzInstance.removeAllFiles(true); // Clears Dropzone files
+            document.getElementById("abstracts-dropzone").reset(); // Resets the entire form, including the input field
+        });
+        
     }
 });
 

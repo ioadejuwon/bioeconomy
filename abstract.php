@@ -57,54 +57,48 @@ include_once 'comp/header.php';
             </div>
         </div>
 
-        <div class="row justify-content-center d-none">
+        <div class="row justify-content-center d-nne">
             <div class="col-lg-8 col-xxl-10">
                 <div class="row gy-5">
-                    <div class="col-lg-6 col-md-6 " data-aos="fade-up" data-aos-delay="150">
+                    <div class="col-lg-12 col-md-12 " data-aos="fade-up" data-aos-delay="150">
                         <div class="card border-2 rounded-3">
                             <div class="card-body d-flex flex-column ">
                                 <h4 class="text-capitalize">
-                                    Conference Fees
+                                    Rules for Abstract Submission
                                 </h4>
                                 <p class="line-clamp-">
-                                    <strong>Faculty Members:</strong> ₦20,000.00
+                                    The submitting author/presenting author should confirm that all co-authors agree to the content of the abstract and support the data presented.
                                     <br>
-                                    <strong> Non-Faculty Members:</strong> ₦25,000.00
-                                    <br>
-                                    <strong>Student:</strong> ₦5,000.00 (with evidence of being a student)
+                                    All abstracts selected must be presented in person, either virtually or physically.
                                 </p>
+                                <p>
+                                    Abstracts should follow the format in the attached file.
+                                </p>
+                                <div class="col-12">
+                                    <div class="row justify-content-start">
+                                        <div class="col-auto">
+
+                                        <a class="btn btn-primary" href="format/2nd International Bioeconomy Conference 2025.pdf" download>Download Abstract Format</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-6 " data-aos="fade-up" data-aos-delay="150">
-                        <div class="card border-2 rounded-3">
-                            <div class="card-body d-flex flex-column ">
-                                <h4 class="text-capitalize">
-                                    Naira (₦) Account Details
-                                </h4>
-                                <p class="line-clamp-">
-                                    <strong>Account No:</strong> 01234567
-                                    <br>
-                                    <strong>Account Name:</strong> Bioeconomy Conference
-                                    <br>
-                                    <strong>Bank Name:</strong> Access Bank
-                                </p>
-                            </div>
-                        </div>
-                    </div>
 
 
                 </div>
             </div>
         </div>
 
-        <div class="row justify-content-center mt-">
+        <div class="row justify-content-center mt-4">
             <div class="col-lg-10" data-aos="fade-up">
                 <div class="card rounded-3">
                     <div class="card-body">
                         <!-- <form data-action="form/message-form.php" method="post" class="form-submit-init"> -->
-                        <form action="inc/api_abstracts.php" method="POST" enctype="multipart/form-data" id="edit-images-dropzone">
+                        <form action="inc/abstracts.php" method="POST" enctype="multipart/form-data" id="abstracts-dropzone">
                             <div class="row g-gs">
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -145,7 +139,7 @@ include_once 'comp/header.php';
                                         <div class="form-control-wrap">
                                             <select id="options" name="mode" class="form-control" required>
                                                 <option value="">Please select one</option>
-                                                <option value="0">Oral</option>
+                                                <option value="2">Oral</option>
                                                 <option value="1">Poster</option>
                                             </select>
                                         </div>

@@ -4,6 +4,7 @@
 $n=10; //for order_id
 $k=5; //for order_id
 $j=9; //for order_id
+$m=4; //for order_id
 function getName($n) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randomString = '';
@@ -26,3 +27,5 @@ function getid($n) {
 // $user_id = getName($n);
 $user_id = getid($k);
 $file_id = getName($j);
+$abstract_files = getName($m);
+$abstract_id = getName($m);
