@@ -23,53 +23,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 				//Send Login email to Vendor
 				$to = $resultEmail; // Vendor's email address
 				// $to = 'isaac@martville.app'; // Vendor's email address
+
+
 				$subject = "🚨 Admin Login - Did you just log in?";
-
-				// $emailSent = sendEmail(
-				// 	$to,
-				// 	$fname,
-				// 	$subject,
-				// 	'email/login.html', // Path to the email template
-				// 	$response,
-				// 	[
-				// 		'FIRST_NAME' => $fname,
-				// 		'YEAR' => FOOTERYEAR
-				// 	],
-				// 	$from = BRAND_EMAIL,
-				// 	$fromName = COMPANY,
-				// 	$replyTo = BRAND_EMAIL,
-				// );
-
-				// if ($emailSent) {
-				// 	echo "Registration email sent!";
-				// } else {
-				// 	echo "Email failed: " . ($response['email_error'] ?? 'Unknown error');
-				// }
-
-
-
-				$templateFilePath = '../email/login.html';
-				if (file_exists($templateFilePath)) {
-					$message = file_get_contents($templateFilePath);
-					$message = str_replace('{{FIRST_NAME}}', $fname, $message);
-					$message = str_replace('{{YEAR}}', FOOTERYEAR, $message);
-				} else {
-					$response['status'] = 'error';
-					$response['message'] = 'Template file not found: ' . $templateFilePath;
-					// Handle the error gracefully
-				}
-				// Additional headers for HTML email
-				$headers = 'From: MartVille <noreply@martville.app>' . "\r\n" .
-					'Reply-To: hello@martville.app' . "\r\n" .
-					'X-Mailer: PHP/' . phpversion() . "\r\n" .
-					'MIME-Version: 1.0' . "\r\n" .
-					'Content-Type: text/html; charset=ISO-8859-1';
-				$mail_sent = mail($to, $subject, $message, $headers); //Mail sent to vendor
-				if ($mail_sent) {
+				$emailSent = sendEmail(
+					$to ,
+					$toName = $fname,
+					$subject,
+					'../email/login.html', // Path to the email template
+					$response,
+					[
+						'FIRST_NAME' => $fname,
+						'YEAR' => FOOTERYEAR,
+						'ABTSRACT_LINK' => 'abstract-link'
+					],
+					$from = BRAND_EMAIL,
+					$fromName = COMPANY,
+					$replyTo = REPLY_TO,
+				);
+				if ($emailSent) {
 					$response['status'] = 'success';
-					$response['message'] = 'Admin ID is ' . $admin_id;
+					// $response['message'] = 'Admin ID is ' . $admin_id;
 					$response['redirect_url'] = ! empty($_POST['url']) ? $_POST['url'] : ADMIN_DASHBOARD; // Add redirect URL to response
+				} else {
+					$response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
 				}
+
+
 				$response['message'] = '2Admin ID is ' . $admin_id;
 			} else {
 				$response['status'] = 'error';
