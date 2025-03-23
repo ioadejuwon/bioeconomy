@@ -104,16 +104,23 @@ exit;
 function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)
 {
     $sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, paymentproof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
     $stmt = mysqli_prepare($conn, $sql);
+    if (!$stmt) {
+        die("Prepare failed: " . mysqli_error($conn)); // Debugging
+    }
+
     mysqli_stmt_bind_param($stmt, "ssssssssss", $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address);
     mysqli_stmt_execute($stmt);
 
-    if(mysqli_stmt_affected_rows($stmt) > 0){
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
         return true;
     } else {
+        error_log("Insert failed: " . mysqli_error($conn)); // Log error for debugging
         return false;
     }
 }
+
 
 function uploadFile($file, $type, $file_id, &$response)
 {
