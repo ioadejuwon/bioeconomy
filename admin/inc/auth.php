@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
 				$subject = "🚨 Admin Login - Did you just log in?";
 				$emailSent = sendEmail(
-					$to ,
+					$to = $resultEmail,
 					$toName = $fname,
 					$subject,
 					'../email/login.html', // Path to the email template
