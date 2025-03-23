@@ -134,12 +134,12 @@ echo json_encode($response);
 exit;
 
 /*** Inserts a new user into the database. */
-function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address){
-	$sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, proof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	$stmt = mysqli_prepare($conn, $sql);
-	mysqli_stmt_bind_param($stmt, "ssssssssss", $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address);
-	return mysqli_stmt_execute($stmt);
-}
+// function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address){
+// 	$sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, proof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+// 	$stmt = mysqli_prepare($conn, $sql);
+// 	mysqli_stmt_bind_param($stmt, "ssssssssss", $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address);
+// 	return mysqli_stmt_execute($stmt);
+// }
 
 /*** Handles file uploads.*/
 function uploadFile($file, $type, $file_id)

@@ -58,9 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response['message'] = 'Payment proof upload failed. Check file type and size.';
                 exit;
             } else {
-                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) { // Insert user into database
+                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) { 
+                    // Insert user into database
 
-                    $_SESSION['user_id'] = $user_id;
+                    // $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
 
                     // $subject = "Registration Successful 📮";
