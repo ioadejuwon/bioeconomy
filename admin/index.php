@@ -25,16 +25,9 @@ $participants = mysqli_query( $conn, "SELECT * FROM bio_participants" );
 $totalparticipants = mysqli_num_rows( $participants );
 $totalparticipants = ! empty( $totalparticipants ) ? $totalparticipants : "0";
 
-// $abstracts = mysqli_query( $conn, "SELECT * FROM bio_abstracts" );
-// $totalabstracts = mysqli_num_rows( $abstracts );
+$abstracts = mysqli_query( $conn, "SELECT * FROM bio_abstracts" );
+$totalabstracts = mysqli_num_rows( $abstracts );
 $totalabstracts = ! empty( $totalabstracts ) ? $totalabstracts : "0";
-// $nostorereg = mysqli_query( $conn, "SELECT * FROM users LEFT JOIN merchants ON users.unique_id = merchants.unique_id WHERE merchants.unique_id IS NULL" );
-// $totalnostorereg = mysqli_num_rows( $nostorereg );
-// $links = mysqli_query( $conn, "SELECT * FROM grootlink" );
-// $totallinks = mysqli_num_rows( $links );
-// $orders = mysqli_query( $conn, "SELECT * FROM orders" );
-// $totalorders = mysqli_num_rows( $orders );
-// $$AdImgLink = "app-assets/img/ad/ad.gif";
 
 
 include_once "admin-head.php";

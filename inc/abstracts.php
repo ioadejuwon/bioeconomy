@@ -91,6 +91,11 @@ if (isset($_FILES['file']) && is_array($_FILES['file']['name'])) {
             exit();
         }
     }
+    if($identifier > 1){
+        $plural = 'Abstracts sent successfully.';
+    }else{
+        $plural = 'Abstract sent successfully.';
+    }
 
     $subject = "Abstract Submitted Successful 📮";
     $emailSent = sendEmail(
@@ -120,7 +125,8 @@ if (isset($_FILES['file']) && is_array($_FILES['file']['name'])) {
             $response,
             [
                 'FIRST_NAME' => $fname,
-                'YEAR' => FOOTERYEAR
+                'YEAR' => FOOTERYEAR,
+                'ABTSRACT_LINK' => 'abstract-link'
             ],
             $from = BRAND_EMAIL,
             $fromName = COMPANY,
@@ -130,7 +136,7 @@ if (isset($_FILES['file']) && is_array($_FILES['file']['name'])) {
             // $response['status'] = 'success';
             // $response['message'] = 'Registration successful.';
             // $response['message'] = 'Email sent successfully.';
-            $response = ['status' => 'success', 'message' => 'Files uploaded successfully.'];
+            $response = ['status' => 'success', 'message' => $plural];
         } else {
             $response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
         }
