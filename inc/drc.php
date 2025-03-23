@@ -29,7 +29,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost:8888') {
 }
 
 // Pages
-define('HOME', BASE_URL.'home');
+define('HOME', BASE_URL .'');
 define('REGISTER', BASE_URL.'register');
 define('ABSTRACT_PAGE', BASE_URL.'abstract');
 
