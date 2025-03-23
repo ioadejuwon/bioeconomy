@@ -64,7 +64,9 @@ var myDropzone = new Dropzone("#dropzoneArea", {
         dzInstance.on("successmultiple", function (files, response) {
             if (response.status === "success") {
                 // alert(response.message);
-                showNotification(response.message, "success");
+                // showNotification(response.message, "success");
+                dzInstance.removeAllFiles(true); // Clears Dropzone files
+                document.getElementById("abstracts-dropzone").reset(); // Resets the entire form, including the input field
                 // window.location.href = "success_page.php"; // Redirect to success page
             } else if (response.status === "info") {
                 showNotification(response.message, "info");
@@ -83,9 +85,7 @@ var myDropzone = new Dropzone("#dropzoneArea", {
         //     showNotification('All uploads completed.', "success");
         // });
         dzInstance.on("queuecomplete", function () {
-            showNotification('All uploads completed.', "success");
-            dzInstance.removeAllFiles(true); // Clears Dropzone files
-            document.getElementById("abstracts-dropzone").reset(); // Resets the entire form, including the input field
+            showNotification('All uploads completed.', "success");            
         });
         
     }

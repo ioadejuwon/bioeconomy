@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($emailSent) {
                         $response['status'] = 'success';
                         $response['message'] = 'Registration successful.';
-                        $response['message'] = 'Email sent successfully.';
+                        // $response['message'] = 'Email sent successfully.';
                     } else {
                         $response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
                     }
