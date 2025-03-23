@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['message'] = 'Please fill in your phone number.';
     } elseif (empty($fee)) {
         $response['message'] = 'Please indicate the fee you paid.';
-    } elseif ( empty($studentproof1)) {
-        $response['message'] = 'You need to upload evidence of studentship.';
+    // } elseif ( empty($studentproof1)) {
+    //     $response['message'] = 'You need to upload evidence of studentship.';
     } else {
         // Check if email already exists
         $sql = "SELECT email FROM bio_participants WHERE email = ?";
