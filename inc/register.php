@@ -59,26 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
             $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
             if ($student === '1' && !$studentproof) {
-                // $response['message'] = 'student proof: ' . $studentproof1;
-                // $response['message'] = 'Student proof: ' . print_r($_FILES['studentproof'], true);
-
                 $response['message'] = 'You need to provide evidence of studentship';
                 echo json_encode($response);
                 exit;
             } elseif (!$proof) {
                 $response['message'] = 'Payment proof upload failed. Check file type and size.';
-                // Process form, validate inputs, handle errors, etc.
                 echo json_encode($response);
                 exit;
             } else {
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
-                    // Insert user into database
-
-                    // $_SESSION['user_id'] = $user_id;
-                    $response['status'] = 'success';
-
-                    // $subject = "Registration Successful 📮";
-                    $subject = "Registration Successful ";
+                    $subject = "Registration Successful 📮";
                     $emailSent = sendEmail(
                         $to = $email,
                         $toName = $fname,
@@ -94,15 +84,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $replyTo = REPLY_TO,
                     );
                     if ($emailSent) {
-                        // echo "Registration email sent!";
+                        $response['status'] = 'success';
                         $response['message'] = 'Registration successful.';
                         $response['message'] = 'Email sent successfully.';
                     } else {
                         $response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
                     }
-                    // $response['message'] = 'Registration successful.xdc';
-
                 } else {
+                     // Delete uploaded files since registration failed
+                    if ($studentproof) unlink($studentproof);
+                    if ($proof) unlink($proof);
                     $response['status'] = 'error';
                     $response['message'] = 'There was an error registering the user.';
                 }
