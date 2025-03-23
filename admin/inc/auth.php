@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 					[
 						'FIRST_NAME' => $fname,
 						'YEAR' => FOOTERYEAR,
-						'ABTSRACT_LINK' => 'abstract-link'
 					],
 					$from = BRAND_EMAIL,
 					$fromName = COMPANY,
