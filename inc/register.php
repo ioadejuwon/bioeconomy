@@ -59,6 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // }
             if ($student === '1' && !$studentproof) {
                 $response['message'] = 'student proof: '. $studentproof1;
+                $response['message'] = 'Student proof: ' . print_r($_FILES['studentproof'], true);
+
                 // $response['message'] = 'Student proof upload failed. Check file type and size.';
                 // exit;
             } elseif (!$proof) {
