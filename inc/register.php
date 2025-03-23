@@ -98,9 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-header('Content-Type: application/json');
-echo json_encode($response);
-exit;
+
 
 function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)
 {
@@ -160,3 +158,7 @@ function uploadFile($file, $type, $file_id, &$response)
         return null;
     }
 }
+
+header('Content-Type: application/json');
+echo json_encode($response);
+exit;
