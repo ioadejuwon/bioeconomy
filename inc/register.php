@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['message'] = 'Please fill in your phone number.';
     } elseif (empty($fee)) {
         $response['message'] = 'Please indicate the fee you paid.';
-    // } elseif ( empty($studentproof1)) {
-    //     $response['message'] = 'You need to upload evidence of studentship.';
+        // } elseif ( empty($studentproof1)) {
+        //     $response['message'] = 'You need to upload evidence of studentship.';
     } else {
         // Check if email already exists
         $sql = "SELECT email FROM bio_participants WHERE email = ?";
@@ -46,31 +46,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['message'] = 'Looks like you registered for the event already.';
         } else {
             mysqli_stmt_close($stmt);
-
-            // Handle file uploads
-            $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
-            $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
-
-            if (!$studentproof) {
-                $response['message'] = 'Student proof upload failed. Check file type and size.';
-                exit;
-            } elseif (!$proof) {
-                $response['message'] = 'Payment proof upload failed. Check file type and size.';
-                exit;
-            } else {
+            if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) { // Insert user into database
 
 
-                // Insert user into database
+                // Handle file uploads
+                $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
+                $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
 
+                if (!$studentproof) {
+                    $response['message'] = 'Student proof upload failed. Check file type and size.';
+                    exit;
+                } elseif (!$proof) {
+                    $response['message'] = 'Payment proof upload failed. Check file type and size.';
+                    exit;
+                } else {
 
-                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
                     $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
 
                     // $subject = "Registration Successful 📮";
                     $subject = "Registration Successful ";
-
-
                     $emailSent = sendEmail(
                         $to = $email,
                         $toName = $fname,
@@ -94,11 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
                     }
                     // $response['message'] = 'Registration successful.xdc';
-
-                } else {
-                    $response['status'] = 'error';
-                    $response['message'] = 'There was an error registering the user.';
                 }
+            } else {
+                $response['status'] = 'error';
+                $response['message'] = 'There was an error registering the user.';
             }
         }
     }
@@ -116,7 +110,8 @@ function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $stud
     return mysqli_stmt_execute($stmt);
 }
 
-function uploadFile($file, $type, $file_id, &$response){
+function uploadFile($file, $type, $file_id, &$response)
+{
     $uploadDir = "proof/";
     $uploadlocation = "../" . $uploadDir;
     if (!is_dir($uploadlocation)) {
