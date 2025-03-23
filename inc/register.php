@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($student === '1'  && empty($studentproof1)) {
         $response['message'] = 'You need to upload evidence of studentship.';
     } else {
+        $response['message'] = 'student proof: '. $studentproof1;
         // Check if email already exists
         $sql = "SELECT email FROM bio_participants WHERE email = ?";
         $stmt = mysqli_prepare($conn, $sql);
