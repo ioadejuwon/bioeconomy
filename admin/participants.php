@@ -18,11 +18,11 @@ if ( ! isset( $_SESSION['admin_id'] ) ) {
 		exit();
 	}
 }
-$sql = mysqli_query( $conn, "SELECT * FROM admin WHERE unique_id = '{$_SESSION['unique_id']}'" );
+$sql = mysqli_query( $conn, "SELECT * FROM bio_admin WHERE admin_id = '{$admin_id}'" );
 $row = mysqli_fetch_assoc( $sql );
 $name = $row["fname"] . " 👋";
-$users = mysqli_query( $conn, "SELECT * FROM merchants  order by created_at DESC" );
-$totalusers = mysqli_num_rows( $users );
+$participants = mysqli_query( $conn, "SELECT * FROM bio_participants order by created_at DESC" );
+$totalparticipants = mysqli_num_rows( $participants );
 // $$AdImgLink = "app-assets/img/ad/ad.gif";
 include_once "admin-head.php";
 include_once "admin-header.php";
@@ -95,7 +95,7 @@ include_once "admin-sidebar.php";
 					<div class="py- px-30 table-responsive">
 						<table class="table  w-1/1" id="productstable">
 							<?php
-							if ( $totalusers != 0 ) {
+							if ( $totalparticipants != 0 ) {
 								?>
 								<thead style="background-color: var(--color-light-4); color: var(--color-black) !important;">
 									<tr>
@@ -109,7 +109,7 @@ include_once "admin-sidebar.php";
 								<tbody>
 									<?php
 									$num = 0;
-									while ( $row = mysqli_fetch_assoc( $users ) ) {
+									while ( $row = mysqli_fetch_assoc( $participants ) ) {
 										$brand = $row['brand_name'];
 										$email = $row['email'];
 										$unique_id = $row['unique_id'];
@@ -124,7 +124,7 @@ include_once "admin-sidebar.php";
 											</td>
 											<td class="product-name">
 												<a href="?h" class="">
-													<?php echo $unique_id ?>
+													<?php echo $user_id ?>
 												</a>
 											</td>
 											<td class="product-price">

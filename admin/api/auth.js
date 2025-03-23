@@ -13,7 +13,7 @@ $(document).ready(function() {
                 // Clear any previous notifications
                 if(response.status === 'success'){
                     // console.log(response);
-                    showNotification(response.redirect_url, 'success'); // Show notification
+                    // showNotification(response.redirect_url, 'success'); // Show notification
                     showNotification(response.message, 'success'); // Show notification
                     window.location.href = response.redirect_url; // Redirect on success
                 } else if (response.status == 'info'){
