@@ -1,6 +1,9 @@
 <?php
 include_once "config.php";
 include_once "randno.php"; // Ensure this file exists
+include_once "drc.php";
+include_once "env.php";
+require '../send.php';
 
 header('Content-Type: application/json');
 
