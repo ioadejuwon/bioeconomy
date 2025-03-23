@@ -3,11 +3,11 @@ $j(document).ready(function() {
 
     // Ensure 'Student Proof' is required only when 'Yes' is selected
     $j('select[name="student"]').on("change", function() {
-        if ($j(this).val() === "1") {
-            $j('input[name="studentproof"]').prop("required", true);
-        } else {
-            $j('input[name="studentproof"]').prop("required", false);
-        }
+        // if ($j(this).val() === "1") {
+        //     $j('input[name="studentproof"]').prop("required", true);
+        // } else {
+        //     $j('input[name="studentproof"]').prop("required", false);
+        // }
     });
 
     // Show selected file name
