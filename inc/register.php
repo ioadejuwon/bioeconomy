@@ -46,19 +46,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['message'] = 'Looks like you registered for the event already.';
         } else {
             mysqli_stmt_close($stmt);
-            if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) { // Insert user into database
 
-                // Handle file uploads
-                $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
-                $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
+            // Handle file uploads
+            $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
+            $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
 
-                if (!$studentproof) {
-                    $response['message'] = 'Student proof upload failed. Check file type and size.';
-                    exit;
-                } elseif (!$proof) {
-                    $response['message'] = 'Payment proof upload failed. Check file type and size.';
-                    exit;
-                } else {
+            if (!$studentproof) {
+                $response['message'] = 'Student proof upload failed. Check file type and size.';
+                exit;
+            } elseif (!$proof) {
+                $response['message'] = 'Payment proof upload failed. Check file type and size.';
+                exit;
+            } else {
+                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) { // Insert user into database
 
                     $_SESSION['user_id'] = $user_id;
                     $response['status'] = 'success';
@@ -79,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $fromName = COMPANY,
                         $replyTo = REPLY_TO,
                     );
-
                     if ($emailSent) {
                         // echo "Registration email sent!";
                         $response['message'] = 'Registration successful.';
@@ -88,10 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $response['message'] = "Email failed: " . ($response['email_error'] ?? 'Unknown error');
                     }
                     // $response['message'] = 'Registration successful.xdc';
+
+                } else {
+                    $response['status'] = 'error';
+                    $response['message'] = 'There was an error registering the user.';
                 }
-            } else {
-                $response['status'] = 'error';
-                $response['message'] = 'There was an error registering the user.';
             }
         }
     }
@@ -104,7 +104,7 @@ exit;
 function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)
 {
     $sql = "INSERT INTO bio_participants (user_id, first_name, last_name, email, phone, fee, student, studentproof, paymentproof, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
+
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
         die("Prepare failed: " . mysqli_error($conn)); // Debugging
