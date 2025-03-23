@@ -3,6 +3,8 @@ set_time_limit(60); // Set the time limit to 60 seconds
 include_once "../../inc/config.php";
 include_once "../../inc/drc.php";
 include_once "../../inc/randno.php";
+include_once "../../inc/env.php";
+require '../../send.php';
 session_start();
 $error = null;
 $response = array(); // Initialize response array
