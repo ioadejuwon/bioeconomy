@@ -25,7 +25,7 @@ $participants = mysqli_query( $conn, "SELECT * FROM bio_participants" );
 $totalparticipants = mysqli_num_rows( $participants );
 $totalparticipants = ! empty( $totalparticipants ) ? $totalparticipants : "0";
 
-$abstracts = mysqli_query( $conn, "SELECT * FROM bio_abstracts" );
+$abstracts = mysqli_query( $conn, "SELECT * FROM bio_abstracts GROUP BY email" );
 $totalabstracts = mysqli_num_rows( $abstracts );
 $totalabstracts = ! empty( $totalabstracts ) ? $totalabstracts : "0";
 
