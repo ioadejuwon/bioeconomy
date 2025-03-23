@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['message'] = 'Please fill in your phone number.';
     } elseif (empty($fee)) {
         $response['message'] = 'Please indicate the fee you paid.';
-        // } elseif ( empty($studentproof1)) {
-        //     $response['message'] = 'You need to upload evidence of studentship.';
+    } elseif ($student == '1'  && empty($studentproof1)) {
+        $response['message'] = 'You need to upload evidence of studentship.';
     } else {
         // Check if email already exists
         $sql = "SELECT email FROM bio_participants WHERE email = ?";
@@ -56,15 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // if (empty($studentproof)) {
             //     $studentproof = "No proof provided"; // Insert this text if no file is uploaded
             // }
-
-            // if (!$studentproof) {
-            //     $response['message'] = 'Student proof upload failed. Check file type and size.';
-            //     exit;
-            // } elseif (!$proof) {
-            //     $response['message'] = 'Payment proof upload failed. Check file type and size.';
-            //     // exit;
-            // } else {
-                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) { 
+            if ($student === '1' && !$studentproof) {
+                $response['message'] = 'Student proof upload failed. Check file type and size.';
+                exit;
+            } elseif (!$proof) {
+                $response['message'] = 'Payment proof upload failed. Check file type and size.';
+                exit;
+            } else {
+                if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
                     // Insert user into database
 
                     // $_SESSION['user_id'] = $user_id;
@@ -99,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $response['status'] = 'error';
                     $response['message'] = 'There was an error registering the user.';
                 }
-            // }
+            }
         }
     }
 }
@@ -156,7 +155,7 @@ function uploadFile($file, $type, $file_id, &$response)
     $filePathLocation = $uploadlocation . $fileName;
 
     if (move_uploaded_file($file["tmp_name"], $filePathLocation)) {
-        $response['message'] = 'Failed to move file '. $filePath ;
+        $response['message'] = 'Failed to move file ' . $filePath;
         // return $filePath;
         return $filePath;
     } else {
