@@ -3,11 +3,11 @@ $j(document).ready(function() {
 
     // Ensure 'Student Proof' is required only when 'Yes' is selected
     $j('select[name="student"]').on("change", function() {
-        // if ($j(this).val() === "1") {
-        //     $j('input[name="studentproof"]').prop("required", true);
-        // } else {
-        //     $j('input[name="studentproof"]').prop("required", false);
-        // }
+        if ($j(this).val() === "1") {
+            $j('input[name="studentproof"]').prop("required", true);
+        } else {
+            $j('input[name="studentproof"]').prop("required", false);
+        }
     });
 
     // Show selected file name
@@ -39,6 +39,7 @@ $j(document).ready(function() {
                     if (response.status === "success") {
                         // showNotification(response.redirect_url, "success");
                         showNotification(response.message, "success");
+                        document.getElementById("registerForm").reset(); // Resets the entire form, including the input field
                         // window.location.href = response.redirect_url;
                     } else if (response.status === "info") {
                         showNotification(response.message, "info");
