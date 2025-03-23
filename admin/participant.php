@@ -18,11 +18,11 @@ if ( ! isset( $_SESSION['admin_id'] ) ) {
 		exit();
 	}
 }
-$sql = mysqli_query( $conn, "SELECT * FROM admin WHERE unique_id = '{$_SESSION['unique_id']}'" );
-$row = mysqli_fetch_assoc( $sql );
+$sql = mysqli_query($conn, "SELECT * FROM bio_admin WHERE admin_id = '{$admin_id}'");
+$row = mysqli_fetch_assoc($sql);
 $name = $row["fname"] . " 👋";
-$users = mysqli_query( $conn, "SELECT * FROM merchants  order by created_at DESC" );
-$totalusers = mysqli_num_rows( $users );
+$participants = mysqli_query($conn, "SELECT * FROM bio_participants order by created_at DESC");
+$totalparticipants = mysqli_num_rows($participants);
 // $$AdImgLink = "app-assets/img/ad/ad.gif";
 include_once "admin-head.php";
 include_once "admin-header.php";
@@ -95,7 +95,7 @@ include_once "admin-sidebar.php";
 					<div class="py- px-30 table-responsive">
 						<table class="table  w-1/1" id="productstable">
 							<?php
-							if ( $totalusers != 0 ) {
+							if ( $totalparticipants != 0 ) {
 								?>
 								<thead style="background-color: var(--color-light-4); color: var(--color-black) !important;">
 									<tr>

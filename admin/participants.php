@@ -5,24 +5,24 @@ $timeout_duration = 1800;  // 30 minutes
 include_once "../inc/config.php";
 $pagetitle = "Users";
 include_once "../inc/drc.php";
-if ( ! isset( $_SESSION['admin_id'] ) ) {
-	header( "location: " . ADMIN_LOGIN . "?url=" . $current_url . "&t=" . $pagetitle );// redirect to login page if not signed in
+if (! isset($_SESSION['admin_id'])) {
+	header("location: " . ADMIN_LOGIN . "?url=" . $current_url . "&t=" . $pagetitle); // redirect to login page if not signed in
 	exit; // Make sure to exit after sending the redirection header
 } else {
 	$admin_id = $_SESSION['admin_id'];
-	if ( isset( $_SESSION['last_activity'] ) && ( time() - $_SESSION['last_activity'] ) > $timeout_duration ) {
+	if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
 		// Last activity was more than 30 minutes ago, so log out the user
 		session_unset();    // Unset all session variables
 		session_destroy();  // Destroy the session data
-		header( "Location: " . ADMIN_LOGOUT . "?url=" . $current_url );  // Redirect to logout or login page
+		header("Location: " . ADMIN_LOGOUT . "?url=" . $current_url);  // Redirect to logout or login page
 		exit();
 	}
 }
-$sql = mysqli_query( $conn, "SELECT * FROM bio_admin WHERE admin_id = '{$admin_id}'" );
-$row = mysqli_fetch_assoc( $sql );
+$sql = mysqli_query($conn, "SELECT * FROM bio_admin WHERE admin_id = '{$admin_id}'");
+$row = mysqli_fetch_assoc($sql);
 $name = $row["fname"] . " 👋";
-$participants = mysqli_query( $conn, "SELECT * FROM bio_participants order by created_at DESC" );
-$totalparticipants = mysqli_num_rows( $participants );
+$participants = mysqli_query($conn, "SELECT * FROM bio_participants order by created_at DESC");
+$totalparticipants = mysqli_num_rows($participants);
 // $$AdImgLink = "app-assets/img/ad/ad.gif";
 include_once "admin-head.php";
 include_once "admin-header.php";
@@ -95,55 +95,75 @@ include_once "admin-sidebar.php";
 					<div class="py- px-30 table-responsive">
 						<table class="table  w-1/1" id="productstable">
 							<?php
-							if ( $totalparticipants != 0 ) {
-								?>
+							if ($totalparticipants != 0) {
+							?>
 								<thead style="background-color: var(--color-light-4); color: var(--color-black) !important;">
 									<tr>
-										<th style="color: var(--color-black) !important;">ID</th>
-										<th style="color: var(--color-black) !important;">UNIQUE ID</th>
-										<th style="color: var(--color-black) !important;">BRAND NAME</th>
-										<th style="color: var(--color-black) !important;">EMAIL ADDRESS</th>
-										<th style="color: var(--color-black) !important;">LAST EMAIL SENT</th>
+									<th style="color: var(--color-black) !important;">ID</th>
+									<th style="color: var(--color-black) !important;">PARTICIPANT ID</th>
+										<th style="color: var(--color-black) !important;">FULL NAME</th>
+										<th style="color: var(--color-black) !important;">EMAIL</th>
+										<th style="color: var(--color-black) !important;">CATEGORY</th>
+										<th style="color: var(--color-black) !important;">DATE JOINED</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 									$num = 0;
-									while ( $row = mysqli_fetch_assoc( $participants ) ) {
-										$brand = $row['brand_name'];
+									while ($row = mysqli_fetch_assoc($participants)) {
+										$first_name = $row['first_name'];
+										$last_name = $row['last_name'];
 										$email = $row['email'];
-										$unique_id = $row['unique_id'];
-										$date_joined = $row['last_email_sent'];
+										$fullname = $first_name . ' '. $last_name;
+										$user_id = $row['user_id'];
+										$countryCode = $row['countryCode'];
+										$phonenumber = $row['phoneNo'];
+										$fee = $row['fee'];
+										if ($fee = 0) {
+											$category = "Student";
+										}elseif ($fee = 1) {
+											$category = "Faculty Members";											
+										}elseif ($fee = 2) {
+											$category = "Non-Faculty Members";
+										}else{
+											$category = "No Category";
+										}
+										// $phonedetails = $row['countryCode'].$row['phoneNo'];
+										$phonedetails = $row['phonedetails'];
+										$date_joined = $row['created_at'];
 										$date = strtotime( $date_joined );
 										$dateformat = date( 'D., jS M. \'y', $date );
 										$num += 1;
-										?>
+									?>
 										<tr class="product-row">
 											<td>
-											<?php echo "#".$num?>
+												<?php echo "#" . $num ?>
 											</td>
 											<td class="product-name">
-												<a href="?h" class="">
-													<?php echo $user_id ?>
+												<a href=<?php echo PARTCIPIPANT_DETS . $user_id ?> class="">
+													ID <?php echo $user_id ?>
 												</a>
 											</td>
 											<td class="product-price">
-												<?php echo $brand ?>
+												<?php echo $fullname ?>
 											</td>
 											<td class="product-price">
 												<?php echo $email ?>
 											</td>
 											<td class="product-price">
+												<?php echo $category ?>
+											</td>
+											<td class="product-price">
 												<?php echo $dateformat ?>
 											</td>
 										</tr>
-										<?php
+									<?php
 									}
 									?>
 								</tbody>
-								<?php
+							<?php
 							} else {
-								?>
+							?>
 								<tr class="col-md-12 text-center">
 									<td colspan="4" class="p-0">
 										<div class="py-30 px-30 bg-light-4 rounded-8 border-light col-md-12 move-center">
@@ -157,7 +177,7 @@ include_once "admin-sidebar.php";
 										</div>
 									</td>
 								</tr>
-								<?php
+							<?php
 							}
 							?>
 						</table>

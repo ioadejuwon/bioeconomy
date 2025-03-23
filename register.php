@@ -156,7 +156,8 @@ if (isset($_GET['email'])) {
                                     <div class="form-group">
                                         <label class="form-label">Evidence of Payment </label>
                                         <div class="form-control-wrap">
-                                            <input type="file" name="paymentproof" class="form-control" required>
+                                            <input type="file" name="paymentproof" class="form-control" accept="image/*" required>
+                                            <p>Screenshot of the transaction reciept (NOT BANK ALERT).</p>
                                         </div>
                                     </div>
                                 </div>
@@ -177,7 +178,8 @@ if (isset($_GET['email'])) {
                                     <div class="form-group">
                                         <label class="form-label">If you are a student, please provide evidence</label>
                                         <div class="form-control-wrap">
-                                            <input type="file" name="studentproof" class="form-control" >
+                                            <input type="file" name="studentproof" accept="image/*" class="form-control" >
+                                            <p>ID Card, Admission letter, etc</p>
                                         </div>
                                     </div>
                                 </div>

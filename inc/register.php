@@ -138,9 +138,9 @@ function uploadFile($file, $type, $file_id, &$response)
         return null;
     }
 
-    $allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    $allowedTypes = ['image/jpeg', 'image/png'];
     if (!in_array($file["type"], $allowedTypes)) {
-        $response['message'] = $type . ' file type not allowed. Upload only PDF, JPG, or PNG.';
+        $response['message'] = $type . ' file type not allowed. Upload only JPG, or PNG.';
         return null;
     }
 
