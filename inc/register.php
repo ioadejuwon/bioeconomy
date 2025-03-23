@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($student === '1'  && empty($studentproof1)) {
         $response['message'] = 'You need to upload evidence of studentship.';
     } else {
-        $response['message'] = 'student proof: '. $studentproof1;
+        
         // Check if email already exists
         $sql = "SELECT email FROM bio_participants WHERE email = ?";
         $stmt = mysqli_prepare($conn, $sql);
@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //     $studentproof = "No proof provided"; // Insert this text if no file is uploaded
             // }
             if ($student === '1' && !$studentproof) {
+                $response['message'] = 'student proof: '. $studentproof1;
                 $response['message'] = 'Student proof upload failed. Check file type and size.';
                 // exit;
             } elseif (!$proof) {
