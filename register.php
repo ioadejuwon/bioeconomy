@@ -173,14 +173,14 @@ if (isset($_GET['email'])) {
 
                                     </div>
                                 </div>
-                                <!-- <div class="col-lg-6">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-label">If you are a student, please provide evidence</label>
                                         <div class="form-control-wrap">
                                             <input type="file" name="studentproof" class="form-control" >
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                               
                                 <div class="col-12">
                                     <div class="form-group">
