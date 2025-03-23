@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // }
             if ($student === '1' && !$studentproof) {
                 $response['message'] = 'Student proof upload failed. Check file type and size.';
-                exit;
+                // exit;
             } elseif (!$proof) {
                 $response['message'] = 'Payment proof upload failed. Check file type and size.';
-                exit;
+                // exit;
             } else {
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
                     // Insert user into database
