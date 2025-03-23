@@ -50,19 +50,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Handle file uploads
             $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
             $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
-            if (empty($proof)) {
-                $proof = "No proof provided"; // Insert this text if no file is uploaded
-            }
-            if (empty($studentproof)) {
-                $studentproof = "No proof provided"; // Insert this text if no file is uploaded
-            }
+            // if (empty($proof)) {
+            //     $proof = "No proof provided"; // Insert this text if no file is uploaded
+            // }
+            // if (empty($studentproof)) {
+            //     $studentproof = "No proof provided"; // Insert this text if no file is uploaded
+            // }
 
             if (!$studentproof) {
                 $response['message'] = 'Student proof upload failed. Check file type and size.';
                 exit;
             } elseif (!$proof) {
                 $response['message'] = 'Payment proof upload failed. Check file type and size.';
-                exit;
+                // exit;
             } else {
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) { 
                     // Insert user into database
