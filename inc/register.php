@@ -7,6 +7,7 @@ include_once "randno.php";
 require '../send.php';
 session_start();
 
+header('Content-Type: application/json');
 $response = ['status' => 'error', 'message' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,10 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['message'] = 'Please fill in your phone number.';
     } elseif (empty($fee)) {
         $response['message'] = 'Please indicate the fee you paid.';
-    } elseif ($student === '1'  && empty($studentproof1)) {
+    } elseif ($student === '1' && $_FILES['studentproof']['error'] === UPLOAD_ERR_NO_FILE) {
         $response['message'] = 'You need to upload evidence of studentship.';
     } else {
-        
+        if (!empty($response['message'])) {
+            echo json_encode($response);
+            exit;
+        }
         // Check if email already exists
         $sql = "SELECT email FROM bio_participants WHERE email = ?";
         $stmt = mysqli_prepare($conn, $sql);
@@ -45,8 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (mysqli_stmt_num_rows($stmt) > 0) {
             $response['status'] = 'info';
             $response['message'] = 'Looks like you registered for the event already.';
+            echo json_encode($response);
+            exit;
         } else {
             mysqli_stmt_close($stmt);
+
 
             // Handle file uploads
             $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
@@ -58,14 +65,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //     $studentproof = "No proof provided"; // Insert this text if no file is uploaded
             // }
             if ($student === '1' && !$studentproof) {
-                $response['message'] = 'student proof: '. $studentproof1;
+                $response['message'] = 'student proof: ' . $studentproof1;
                 $response['message'] = 'Student proof: ' . print_r($_FILES['studentproof'], true);
 
                 // $response['message'] = 'Student proof upload failed. Check file type and size.';
-                // exit;
+                echo json_encode($response);
+                exit;
             } elseif (!$proof) {
                 $response['message'] = 'Payment proof upload failed. Check file type and size.';
-                // exit;
+                // Process form, validate inputs, handle errors, etc.
+                echo json_encode($response);
+                exit;
             } else {
                 if (insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)) {
                     // Insert user into database
@@ -168,6 +178,5 @@ function uploadFile($file, $type, $file_id, &$response)
     }
 }
 
-header('Content-Type: application/json');
 echo json_encode($response);
 exit;
