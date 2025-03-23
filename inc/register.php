@@ -58,17 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Handle file uploads
             $studentproof = uploadFile($studentproof1, 'student_', $file_id, $response);
             $proof = uploadFile($paymentproof, 'paymentproof_', $file_id, $response);
-            // if (empty($proof)) {
-            //     $proof = "No proof provided"; // Insert this text if no file is uploaded
-            // }
-            // if (empty($studentproof)) {
-            //     $studentproof = "No proof provided"; // Insert this text if no file is uploaded
-            // }
             if ($student === '1' && !$studentproof) {
-                $response['message'] = 'student proof: ' . $studentproof1;
-                $response['message'] = 'Student proof: ' . print_r($_FILES['studentproof'], true);
+                // $response['message'] = 'student proof: ' . $studentproof1;
+                // $response['message'] = 'Student proof: ' . print_r($_FILES['studentproof'], true);
 
-                // $response['message'] = 'Student proof upload failed. Check file type and size.';
+                $response['message'] = 'You need to provide evidence of studentship';
                 echo json_encode($response);
                 exit;
             } elseif (!$proof) {
