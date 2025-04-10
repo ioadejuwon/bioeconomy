@@ -13,6 +13,16 @@
                 <nav class="nk-header-menu nk-navbar">
                     <div>
                         <ul class="nk-nav d-nne">
+                            <li class="nk-nav-item d-noe">
+                                <a href="<?php echo ABSTRACT_PAGE ?>" class="nk-nav-link">
+                                    <span class="nk-nav-text">Abstract</span>
+                                </a>
+                            </li>
+                            <li class="nk-nav-item d-noe">
+                                <a href="<?php echo REGISTER ?>" class="nk-nav-link">
+                                    <span class="nk-nav-text">Register</span>
+                                </a>
+                            </li>
                             <li class="nk-nav-item has-sub">
                                 <a href="#" class="nk-nav-link nk-nav-toggle">
                                     <span class="nk-nav-text">Proceedings</span>

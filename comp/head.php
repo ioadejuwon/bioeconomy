@@ -1,4 +1,4 @@
-<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.min.jsb"></script>
 <?php
 include_once("inc/config.php");
 include_once("inc/drc.php");

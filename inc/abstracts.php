@@ -119,9 +119,9 @@ if (isset($_FILES['file']) && is_array($_FILES['file']['name'])) {
         $subject = "New Abstract Submitted 📮";
         $emailSent = sendEmail(
             $to = 'ioadejuwon@gmail.com',
-            $toName = $fname,
+            $toName = COMPANY,
             $subject,
-            '../email/abstract.html', // Path to the email template
+            '../email/newabstract.html', // Path to the email template
             $response,
             [
                 'FIRST_NAME' => $fname,
