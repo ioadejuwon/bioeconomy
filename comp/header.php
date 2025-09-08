@@ -23,11 +23,39 @@
                                     <span class="nk-nav-text">Register</span>
                                 </a>
                             </li>
+                            <li class="nk-nav-item d-noe">
+                                <a href="<?php echo DOCUMENTS ?>" class="nk-nav-link">
+                                    <span class="nk-nav-text">Documents</span>
+                                </a>
+                            </li>
                             <li class="nk-nav-item has-sub">
                                 <a href="#" class="nk-nav-link nk-nav-toggle">
                                     <span class="nk-nav-text">Proceedings</span>
                                 </a>
                                 <ul class="nk-nav-sub">
+                                     <li class="nk-nav-item">
+                                        <ul class="row mx-auto">
+
+                                            <li class="col-lg-12 col-xl-12 p-0">
+                                                <a href="<?php echo  ?>" class="nk-nav-link">
+                                                    <div class="media-group">
+                                                        <div class="text-primary me-3">
+                                                            <em class="icon ni ni-pie-fill"></em>
+                                                        </div>
+                                                        <div class="media-text d-flex align-items-center sm">
+                                                            <div>
+                                                                <h2 class="lead-text fs-14 text-capitalize m-0">2025 Proceedings</h2>
+                                                                <span class="sub-text text-nowrap text-capitalize m-0">Details on the 2025 proceedings</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+
+
+
+                                        </ul>
+                                    </li>
                                     <li class="nk-nav-item">
                                         <ul class="row mx-auto">
 
@@ -51,6 +79,7 @@
 
                                         </ul>
                                     </li>
+                                   
                                 </ul>
                             </li>
                             <li class="nk-nav-item d-none">

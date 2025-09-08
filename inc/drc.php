@@ -31,6 +31,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost:8888') {
 // Pages
 define('HOME', BASE_URL .'');
 define('REGISTER', BASE_URL.'register');
+define('DOCUMENTS', BASE_URL.'documents');
 define('ABSTRACT_PAGE', BASE_URL.'abstract');
 
 define('ABSTRACTS_URL', BASE_URL.'');
