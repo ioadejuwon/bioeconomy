@@ -64,21 +64,76 @@ include_once 'comp/header.php';
                         <div class="card border-2 rounded-3">
                             <div class="card-body d-flex flex-column ">
                                 <h4 class="text-capitalize">
-                                    Rules for Abstract Submission
+                                    Proceedings of the 1st International Bioeconomy Conference
                                 </h4>
                                 <p class="line-clamp-">
-                                    The submitting author/presenting author should confirm that all co-authors agree to the content of the abstract and support the data presented.
-                                    <br>
-                                    All abstracts selected must be presented in person, either virtually or physically.
-                                </p>
-                                <p>
-                                    Abstracts should follow the format in the attached file.
+                                    Theme: Banana and Plantain as Bioresources for Building a Sustainable Circular Economy
                                 </p>
                                 <div class="col-12">
                                     <div class="row justify-content-start">
                                         <div class="col-auto">
 
-                                        <a class="btn btn-primary" href="format/2nd International Bioeconomy Conference 2025.pdf" download>Download Abstract Format</a>
+                                        <a class="btn btn-primary" href="docs/Proceedings of the 1st International Bioeconomy Conference.pdf" download>
+                                            Download
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 " data-aos="fade-up" data-aos-delay="150">
+                        <div class="card border-2 rounded-3">
+                            <div class="card-body d-flex flex-column ">
+                                <h4 class="text-capitalize">
+                                    POLICY BRIEF ON THE 1ST BIOECONOMY CONFERENCE
+                                </h4>
+                                <p class="line-clamp-">
+                                    Theme: Banana and Plantain as Bioresources for Building a Sustainable Circular Economy
+                                    <br>
+                                    Date: November 19, 2024
+                                    <br>
+                                    Venue: Virtual
+                                </p>
+                                <div class="col-12">
+                                    <div class="row justify-content-start">
+                                        <div class="col-auto">
+
+                                        <a class="btn btn-primary" href="docs/POLICY BRIEF ON THE 1ST BIOECONOMY CONFERENCE.pdf" download>
+                                            Download
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-12 col-md-12 " data-aos="fade-up" data-aos-delay="150">
+                        <div class="card border-2 rounded-3">
+                            <div class="card-body d-flex flex-column ">
+                                <h4 class="text-capitalize">
+                                    COMMUNIQUE FOR THE 1ST BIOECONOMY CONFERENCE
+                                </h4>
+                                <p class="line-clamp-">
+                                    Theme: Banana and Plantain as Bioresources for Building a Sustainable Circular Economy
+                                    <br>
+                                    Date: November 19, 2024
+                                    <br>
+                                    Venue: Virtual
+                                </p>
+                                <div class="col-12">
+                                    <div class="row justify-content-start">
+                                        <div class="col-auto">
+
+                                        <a class="btn btn-primary" href="docs/Report of the 1st Bioeconomy conference signed.pdf" download>
+                                            Download
+                                        </a>
                                         </div>
                                     </div>
                                 </div>
