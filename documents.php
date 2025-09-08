@@ -11,7 +11,7 @@
 </style>
 
 <?php
-$pagetitle = 'Abstract';
+$pagetitle = 'Documents';
 include_once 'comp/head.php';
 include_once 'comp/header.php';
 ?>
@@ -23,7 +23,7 @@ include_once 'comp/header.php';
                 <div class="col-lg-8">
                     <div class="nk-section-head text-center">
                         <h1 class="display-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="0" style="font-size: 50px !important;">
-                            Abstract Submission
+                            Documents
                         </h1>
                         <p class="fs-20 px-lg-7 aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
                             Please submit your Conference Abstract using the form below
