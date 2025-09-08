@@ -37,7 +37,7 @@
                                         <ul class="row mx-auto">
 
                                             <li class="col-lg-12 col-xl-12 p-0">
-                                                <a href="<?php echo  ?>" class="nk-nav-link">
+                                                <a href="<?php echo "" ?>" class="nk-nav-link">
                                                     <div class="media-group">
                                                         <div class="text-primary me-3">
                                                             <em class="icon ni ni-pie-fill"></em>
