@@ -152,7 +152,13 @@ include_once "admin-sidebar.php";
 												<?php echo $email ?>
 											</td>
 											<td class="product-price">
-												<?php echo $file_path ?>
+												<?php
+												// echo $file_path 
+
+												?>
+												<a href="<?php echo $file_path ?>">
+													Downnload Abstracts
+												</a>
 											</td>
 											<td class="product-price">
 												<?php echo $dateformat ?>
