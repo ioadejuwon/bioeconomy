@@ -156,7 +156,7 @@ include_once "admin-sidebar.php";
 												// echo $file_path 
 
 												?>
-												<a href="<?php echo 'https://bioeconomyconf.com/'.$file_path ?>">
+												<a href="<?php echo 'https://bioeconomyconf.com/'.$file_path ?>" download>
 													Downnload Abstracts
 												</a>
 											</td>
