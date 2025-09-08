@@ -7,22 +7,22 @@ $pagetitle = "Abstracts";
 include_once "../inc/drc.php";
 
 $uriSegments = explode( "/", parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) );
-$inventorycode = $uriSegments[ $inventoryvalue ];
+$inventorycode = $uriSegments[ 3 ];
 $v = mysqli_real_escape_string( $conn, $inventorycode );
 
 
-if ( ! isset( $_SESSION['admin_id'] ) ) {
-	header( "location: " . ADMIN_LOGIN . "?url=" . $current_url . "&t=" . $pagetitle );// redirect to login page if not signed in
+if (! isset($_SESSION['admin_id'])) {
+	header("location: " . ADMIN_LOGIN . "?url=" . $current_url . "&t=" . $pagetitle); // redirect to login page if not signed in
 	exit; // Make sure to exit after sending the redirection header
 } else {
 	$admin_id = $_SESSION['admin_id'];
-	// $sql = mysqli_query( $conn, "SELECT * FROM merchants WHERE unique_id = '{$unique_id}'" );
-	$sql = mysqli_query( $conn, "SELECT * FROM users JOIN merchants on users.unique_id = merchants.unique_id WHERE merchants.unique_id = '{$unique_id}'" );
-	$row = mysqli_fetch_assoc( $sql );
-	$biz_id = $row['biz_id'];
-	$store_row_count = mysqli_num_rows( $sql );
-	
-	
+	if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout_duration) {
+		// Last activity was more than 30 minutes ago, so log out the user
+		session_unset();    // Unset all session variables
+		session_destroy();  // Destroy the session data
+		header("Location: " . ADMIN_LOGOUT . "?url=" . $current_url);  // Redirect to logout or login page
+		exit();
+	}
 }
 
 
