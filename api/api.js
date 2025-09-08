@@ -18,4 +18,4 @@ function showNotification(message, type = 'success') {
             container.removeChild(notification);
         }, 500); // Match the transition duration
     }, 3000);
-}
+} ter

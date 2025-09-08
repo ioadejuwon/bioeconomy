@@ -6,9 +6,7 @@
         </div>
         <script src="api/api.js"></script>
         
-        <script>
-            var $j = jQuery.noConflict();
-        </script>
+        
         <script src="assets/js/bundle2888.js?v1.0.0"></script>
         <script src="assets/js/scripts2888.js?v1.0.0"></script>
         

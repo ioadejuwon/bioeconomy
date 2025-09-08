@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php'; // Load PHPMailer
 // require 'inc/drc.php'; // Load DRC
-require 'inc/env.php'; // Load DRC
+// require 'inc/env.php'; // Load DRC
 
 
 function sendEmail($to, $toName, $subject, $htmlFile, &$response, $placeholders = [], $from = BRAND_EMAIL, $fromName = COMPANY, $replyTo = null, $cc = [], $bcc = [], $attachments = []) {

@@ -1,5 +1,5 @@
 <?php
-$user_id = $_SESSION['user_id'];
+// $user_id = $_SESSION['user_id'];
 
 $footeryear = date("Y");
 define('FOOTERYEAR', $footeryear);
@@ -51,4 +51,41 @@ $host = $_SERVER['HTTP_HOST']; // Get the host (domain name)
 $uri = $_SERVER['REQUEST_URI']; // Get the current request URI
 $current_url = $protocol . $host . $uri; // Combine the protocol, host, and URI to get the full URL
 // echo "Current URL: $current_url"; // Output the current URL
-$t = $pagetitle;
+// $t = $pagetitle;
+
+
+
+
+// About organization
+
+// This is the start of one of the pages
+// <?php
+// $pagetitle = 'Abstract';
+// include_once 'comp/head.php';
+
+// Then in the head tag, I have this
+// <script src="assets/js/jquery.min.js"></script>
+// <?php
+// include_once("inc/config.php");
+// include_once("inc/drc.php");
+//  ?
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta name="author" content="Softnio">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <link rel="shortcut icon" href="assets/images/oau.png">
+//     <title><?php echo $pagetitle ? - Bioeconomy Conference</title>
+
+
+// Than in the drc file I have this
+
+// $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://'; // Get the protocol (http or https)
+// $host = $_SERVER['HTTP_HOST']; // Get the host (domain name)
+// $uri = $_SERVER['REQUEST_URI']; // Get the current request URI
+// $current_url = $protocol . $host . $uri; // Combine the protocol, host, and URI to get the full URL
+// // echo "Current URL: $current_url"; // Output the current URL
+// $t = $pagetitle;
+
+// Then in the 

@@ -1,11 +1,11 @@
 <?php
-// set_time_limit(60); // Set the time limit to 60 seconds
-// include_once "config.php";
-// include_once "drc.php";
-// include_once "randno.php";
-// session_start();
+set_time_limit(60); // Set the time limit to 60 seconds
+include_once "config.php";
+include_once "drc.php";
+include_once "randno.php";
+session_start();
 
-// $response = ['status' => 'error', 'message' => ''];
+$response = ['status' => 'error', 'message' => ''];
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // 	// Trim and sanitize inputs
@@ -128,10 +128,10 @@
 // 	}
 // }
 
-// // Output JSON response
-// header('Content-Type: application/json');
-// echo json_encode($response);
-// exit;
+// Output JSON response
+header('Content-Type: application/json');
+echo json_encode($response);
+exit;
 
 /*** Inserts a new user into the database. */
 // function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address){

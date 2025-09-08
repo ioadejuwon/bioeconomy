@@ -1,8 +1,10 @@
-$j(document).ready(function() {
-    // console.log("Register form loaded");
+
+var $j = jQuery.noConflict();
+$j(document).ready(function () {
+    console.log("Register form loaded");
 
     // Ensure 'Student Proof' is required only when 'Yes' is selected
-    $j('select[name="student"]').on("change", function() {
+    $j('select[name="student"]').on("change", function () {
         if ($j(this).val() === "1") {
             $j('input[name="studentproof"]').prop("required", true);
         } else {
@@ -20,7 +22,7 @@ $j(document).ready(function() {
     // });
 
     if ($j("#registerForm").length) {
-        $j("#registerForm").on("submit", function(event) {
+        $j("#registerForm").on("submit", function (event) {
             event.preventDefault(); // Prevent default form submission
 
             var formData = new FormData(this); // Use FormData to handle file uploads
@@ -31,11 +33,11 @@ $j(document).ready(function() {
             $j.ajax({
                 type: "POST",
                 url: "inc/register.php",
-                data: formData, 
-                contentType: false, 
-                processData: false, 
+                data: formData,
+                contentType: false,
+                processData: false,
                 dataType: "json",
-                success: function(response) {
+                success: function (response) {
                     if (response.status === "success") {
                         // showNotification(response.redirect_url, "success");
                         showNotification(response.message, "success");
@@ -47,10 +49,10 @@ $j(document).ready(function() {
                         showNotification(response.message, "error");
                     }
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     showNotification(`An error occurred while processing your request. ${error}`, "error");
                 },
-                complete: function() {
+                complete: function () {
                     $submitButton.prop("disabled", false).text("Register");
                 }
             });

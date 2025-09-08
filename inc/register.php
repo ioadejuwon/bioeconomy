@@ -4,13 +4,14 @@ include_once "config.php";
 include_once "drc.php";
 include_once "env.php";
 include_once "randno.php";
-require '../send.php';
+// require '../send.php';
 session_start();
 
-header('Content-Type: application/json');
-$response = ['status' => 'error', 'message' => ''];
+
+$response = ['status' => 'error', 'message' => 'ddddd'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $response['message'] = 'Please fill in your name.';
     // Trim and sanitize inputs
     $email = trim($_POST['email']);
     $fname = trim($_POST['fname']);
@@ -22,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $student = trim($_POST['student']);
     $studentproof1 = $_FILES['studentproof'];
     $address = trim($_POST['address']);
+    
 
     // Validate required fields
     if (empty($fname) || empty($lname)) {
@@ -101,7 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-
+header('Content-Type: application/json');
+echo json_encode($response);
+exit;
 
 
 function insertUser($conn, $user_id, $fname, $lname, $email, $phone, $fee, $student, $studentproof, $proof, $address)
@@ -154,7 +158,7 @@ function uploadFile($file, $type, $file_id, &$response)
     $filePathLocation = $uploadlocation . $fileName;
 
     if (move_uploaded_file($file["tmp_name"], $filePathLocation)) {
-        $response['message'] = 'Failed to move file ' . $filePath;
+        // $response['message'] = 'Failed to move file ' . $filePath;
         // return $filePath;
         return $filePath;
     } else {
@@ -163,5 +167,3 @@ function uploadFile($file, $type, $file_id, &$response)
     }
 }
 
-echo json_encode($response);
-exit;

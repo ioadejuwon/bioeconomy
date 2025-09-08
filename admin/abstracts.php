@@ -161,7 +161,7 @@ include_once "admin-sidebar.php";
 																<i class="fa-regular fa-eye"></i>
 															</a>
 
-															<a href="<?php echo DELETE_PRODUCT . '?productid=' . $product_id ?>" class=" productCard__icon">
+															<a href="<?php echo   '?productid=' . $product_id ?>" class=" productCard__icon">
 																<i class="fa-solid fa-trash-can"></i>
 															</a>
 														</div>
