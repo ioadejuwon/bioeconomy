@@ -103,7 +103,7 @@ include_once "admin-sidebar.php";
 									<th style="color: var(--color-black) !important;">ABSTRACT ID</th>
 										<th style="color: var(--color-black) !important;">FULL NAME</th>
 										<th style="color: var(--color-black) !important;">EMAIL</th>
-										<th style="color: var(--color-black) !important;">CATEGORY</th>
+										<th style="color: var(--color-black) !important;">FILE PATH</th>
 										<th style="color: var(--color-black) !important;">DATE JOINED</th>
 									</tr>
 								</thead>
@@ -118,16 +118,17 @@ include_once "admin-sidebar.php";
 										$abstract_id = $row['abstract_id'];
 										$countryCode = $row['countryCode'];
 										$phonenumber = $row['phoneNo'];
-										$fee = $row['fee'];
-										if ($fee = 0) {
-											$category = "Student";
-										}elseif ($fee = 1) {
-											$category = "Faculty Members";											
-										}elseif ($fee = 2) {
-											$category = "Non-Faculty Members";
-										}else{
-											$category = "No Category";
-										}
+										$file_path = $row['file_path'];
+										// $fee = $row['fee'];
+										// if ($fee = 0) {
+										// 	$category = "Student";
+										// }elseif ($fee = 1) {
+										// 	$category = "Faculty Members";											
+										// }elseif ($fee = 2) {
+										// 	$category = "Non-Faculty Members";
+										// }else{
+										// 	$category = "No Category";
+										// }
 										// $phonedetails = $row['countryCode'].$row['phoneNo'];
 										$phonedetails = $row['phonedetails'];
 										$date_joined = $row['created_at'];
@@ -151,7 +152,7 @@ include_once "admin-sidebar.php";
 												<?php echo $email ?>
 											</td>
 											<td class="product-price">
-												<?php echo $category ?>
+												<?php echo $file_path ?>
 											</td>
 											<td class="product-price">
 												<?php echo $dateformat ?>
