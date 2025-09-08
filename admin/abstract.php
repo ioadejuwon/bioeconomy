@@ -115,7 +115,7 @@ include_once "admin-sidebar.php";
 										$last_name = $row['last_name'];
 										$email = $row['email'];
 										$fullname = $first_name . ' '. $last_name;
-										$user_id = $row['user_id'];
+										$abstract_id = $row['abstract_id'];
 										$countryCode = $row['countryCode'];
 										$phonenumber = $row['phoneNo'];
 										$fee = $row['fee'];
@@ -140,8 +140,8 @@ include_once "admin-sidebar.php";
 												<?php echo "#" . $num ?>
 											</td>
 											<td class="product-name">
-												<a href=<?php echo PARTCIPIPANT_DETS . $user_id ?> class="">
-													ID <?php echo $user_id ?>
+												<a href=<?php echo PARTCIPIPANT_DETS . $abstract_id ?> class="">
+													ID <?php echo $abstract_id ?>
 												</a>
 											</td>
 											<td class="product-price">
