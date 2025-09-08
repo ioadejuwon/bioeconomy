@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+// Set the session timeout duration (in seconds)
+$timeout_duration = 1800;  // 30 minutes
 include_once "../inc/config.php";
 $pagetitle = "Abstracts";
 include_once "../inc/drc.php";
